@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Web3 from 'web3';
 
@@ -11,12 +11,16 @@ import NavBar from './components/NavBar/NavBar';
 
 // pages
 import Main from './components/Main';
-
 import Campaign from './Campaign';
 
+
+// contexts
+import { AccountProvider } from './context/AccountContext';
+import { ContractWeb3Context } from './context/ContractWeb3Context';
+
 function App() {
-  const [state, setState] = useState({ web3: null, contract: null });
-  const [data, setData] = useState([]);
+  const{ setContract, setWeb3} = useContext(ContractWeb3Context);
+  const [contractWeb3, setContractWeb3] = useState(null)
 
   // for changing theme when loading
   useEffect(() => {
@@ -30,7 +34,7 @@ function App() {
   useEffect(() => {
     const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545"); // rpc server url of ganache
     async function template() {
-      const web3 = new Web3(provider);
+      const web3Instance = new Web3(provider);
       /*
           To interact with smart contract we need
           i) ABI Code
@@ -39,31 +43,38 @@ function App() {
       */
 
       // gets networkId (in ganacge: 5777)
-      const networkId = await web3.eth.net.getId();
+      const networkId = await web3Instance.eth.net.getId();
 
       // deployedNetwork.address is contract address of Etherfund
       const deployedNetwork = Etherfund.networks[networkId];
 
       // instance of smart contract to make interactions
-      const contract = new web3.eth.Contract(Etherfund.abi, deployedNetwork.address);
+      const contractInstance = new web3Instance.eth.Contract(Etherfund.abi, deployedNetwork.address);
 
-      setState({ web3: web3, contract: contract });// change state
+      setContract(contractInstance);
+      setWeb3(web3Instance);
+      setContractWeb3({contractInstance, web3Instance})
     }
-
+    
     provider && template()
   }, []);
 
+  if(!contractWeb3) {
+    return (
+      <h1>Loading</h1>
+    )
+  }
+
   return (
-    <div className="App">
-      <h1>{data}</h1>
-      <BrowserRouter>
-        <NavBar />
+    <BrowserRouter>
+      <AccountProvider>
+      <NavBar />
         <Routes>
-          <Route exact path='/' element={<Campaign contract={state.contract} web3={state.web3}/>} />
+          <Route exact path='/' element={<Campaign />} />
           <Route exact path='/main' element={<Main />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </AccountProvider>
+    </BrowserRouter>
   );
 }
 

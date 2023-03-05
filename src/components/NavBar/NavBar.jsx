@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 
 // components
 import Switch from '../Switch/Switch'
+
+// helpers
+import { connectAccount } from '../../helpers/account'
+
+// contexts
+import {AccountContext} from '../../context/AccountContext'
 
 // logo
 import Logo from '../../assets/images/logo.png'
@@ -26,7 +32,7 @@ const navOptions = [
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
-    const [wallet, setWallet] = useState(false);
+    const {account, setAccount} = useContext(AccountContext);
 
     // get current theme
     useEffect(() => {
@@ -35,7 +41,7 @@ const NavBar = () => {
             document.querySelector('html').id = 'dark';
             setTheme('dark');
         }
-    })
+    }, [])
 
     // change theme
     const changeTheme = () => {
@@ -57,6 +63,11 @@ const NavBar = () => {
         drawerVisibility ? drawer.style.opacity = '0' : drawer.style.opacity = '1'
         drawer.style.left = pos
         setDrawerVisibility(!drawerVisibility)
+    }
+
+    const connect = async() => {
+        let acc = await connectAccount();
+        setAccount(acc);
     }
 
     return (
@@ -84,7 +95,7 @@ const NavBar = () => {
                                 })
                             }
                             {
-                                wallet && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
+                                account && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
                                     <li className="sidebar-li">Profile</li>
                                 </Link>
                             }
@@ -115,7 +126,7 @@ const NavBar = () => {
                     })
                 }
                 {
-                    wallet ?
+                    account ?
                         <Link
                             className='nav-links profile-icon-nav'
                             to='profile'
@@ -124,7 +135,7 @@ const NavBar = () => {
                             <FaUserAlt />
                         </Link>
                         :
-                        <button className='btn-nav'>Connect</button>
+                        <button className='btn-nav' onClick={connect}>Connect</button>
                 }
                 <Switch className="nav-switch" onChange={changeTheme} checked={theme === 'dark' && true} />
                 <span className="ripple nav-switch">
