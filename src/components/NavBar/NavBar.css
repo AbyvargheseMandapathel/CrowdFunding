@@ -43,10 +43,11 @@
     height: 1.5em;
 }
 
-.brand-nav h3 {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    color: var(--primary);
+.logo-nav { 
+    height: 100%;
+    padding: 1.25em 1em;
+    cursor: pointer;
+    max-height: 4em;
 }
 
 .sidebar-drawer {
@@ -160,8 +161,8 @@
     }
 
     .sidebar-li:hover {
-        background: var(--primary);
-        color: var(--bg1);
+        background: var(--primary-h);
+        color: var(--primary);
     }
 
     .switch-theme-sidear {

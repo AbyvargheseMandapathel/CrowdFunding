@@ -5,11 +5,15 @@ import './NavBar.css'
 // components
 import Switch from '../Switch/Switch'
 
+// logo
+import Logo from '../../assets/images/logo.png'
+
 // icons
 import { TbBrightnessUp } from 'react-icons/tb'
 import { BsFillMoonFill } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { RiMenu2Line } from 'react-icons/ri'
+
 
 // navigation links
 const navOptions = [
@@ -62,13 +66,12 @@ const NavBar = () => {
                     <span className="ripple drawer-opener" onClick={() => slideDrawer('0%')}>
                         <RiMenu2Line className='nav-icons' />
                     </span>
-                    <h3>BF&nbsp;</h3>
-                    <h3>BettedFund</h3>
+                    <img src={Logo} className='logo-nav' alt="" />
                 </div>
                 <div className="sidebar-drawer">
                     <div className="sidebar">
                         <div className="brand-nav brand-nav-sidebar">
-                            <h3>Betterfund</h3>
+                            <img src={Logo} className="logo-nav" alt="" />
                         </div>
                         <ul className="sidebar-ul">
                             {
@@ -91,9 +94,10 @@ const NavBar = () => {
                             <span className="ripple">
                                 {
                                     theme === 'dark' ?
-                                        <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
-                                        :
                                         <TbBrightnessUp className='nav-icons ripple' />
+                                        :
+                                        <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
+
                                 }
                             </span>
                         </div>
@@ -126,9 +130,9 @@ const NavBar = () => {
                 <span className="ripple nav-switch">
                     {
                         theme === 'dark' ?
-                            <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
-                            :
-                            <TbBrightnessUp className='nav-icons ripple' />
+                        <TbBrightnessUp className='nav-icons ripple' />
+                        :
+                        <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
                     }
                 </span>
             </div>
