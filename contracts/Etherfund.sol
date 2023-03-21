@@ -58,6 +58,16 @@ contract Etherfund {
         return campaigns;
     }
 
+    // contribute ether
+    function contribute(uint campaignId) payable public {
+        campaigns[campaignId].collectedAmount = msg.value;
+    }
+
+    // get contract balance
+    function contractBalance() public view returns(uint) {
+        return address(this).balance;
+    }
+
     // sample
     function setter(uint256 _a) public {
         a = _a;
