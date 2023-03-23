@@ -8,6 +8,7 @@ import './App.css';
 
 // components
 import NavBar from './components/NavBar/NavBar';
+import CampaignCard from './components/CampaignCard/CampaignCard';
 
 // pages
 import Main from './components/Main';

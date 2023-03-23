@@ -2,6 +2,10 @@ import React, { useEffect, useState, useContext } from 'react'
 import { AccountContext } from './context/AccountContext';
 import { ContractWeb3Context } from './context/ContractWeb3Context';
 
+
+// components
+import CampaignCard from './components/CampaignCard/CampaignCard';
+
 const Campaign = () => {
     const [data, setData] = useState(0); // sample
     const [inp, setInp] = useState(''); // sample
@@ -93,6 +97,11 @@ const Campaign = () => {
     }
 
     return (
+        <>
+        <div className="campaign-card-section">
+            <CampaignCard/>
+        </div>
+        
         <div>
             <p style={{ margin: '2em 0 2em 5em' }}>account : {account}</p>
             <div>
@@ -156,6 +165,7 @@ const Campaign = () => {
                 <button onClick={() => contributeEther(0)} className="btn-nav">Contribute</button>
             </div>
         </div>
+        </>
     )
 }
 

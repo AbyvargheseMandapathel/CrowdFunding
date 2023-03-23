@@ -27,6 +27,9 @@
   --sidebar-w: 15em;
 
   --scroll-thumb: #dedada;
+
+  --black: #000;
+  --white: #fff;
 }
 
 :root#dark {
@@ -123,6 +126,18 @@ a:active {
 .btn-nav:active {
   background: #d7950499;
 }
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-overflow-hide {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
 
 
 
