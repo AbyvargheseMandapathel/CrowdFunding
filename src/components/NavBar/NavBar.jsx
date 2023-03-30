@@ -6,10 +6,10 @@ import './NavBar.css'
 import Switch from '../Switch/Switch'
 
 // helpers
-import { connectAccount } from '../../helpers/account'
+import { connectAccount } from '../../helpers/helper'
 
 // contexts
-import {AccountContext} from '../../context/AccountContext'
+import { AccountContext } from '../../context/AccountContext'
 
 // logo
 import Logo from '../../assets/images/logo.png'
@@ -23,16 +23,16 @@ import { RiMenu2Line } from 'react-icons/ri'
 
 // navigation links
 const navOptions = [
-    { opt: 'Home', path: 'form' },
-    { opt: 'Create', path: '/' },
-    { opt: 'Campaigns', path: '/' },
-    { opt: 'Requests', path: '/' },
+    { opt: 'home', path: 'form' },
+    { opt: 'create', path: '/'},
+    { opt: 'campaigns', path: '/'},
+    { opt: 'requests', path: '/' },
 ];
 
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
-    const {account, setAccount} = useContext(AccountContext);
+    const { account, setAccount } = useContext(AccountContext);
 
     // get current theme
     useEffect(() => {
@@ -65,7 +65,7 @@ const NavBar = () => {
         setDrawerVisibility(!drawerVisibility)
     }
 
-    const connect = async() => {
+    const connect = async () => {
         let acc = await connectAccount();
         setAccount(acc);
     }
@@ -86,17 +86,17 @@ const NavBar = () => {
                         </div>
                         <ul className="sidebar-ul">
                             {
-                                navOptions.map(({ opt, path }, key) => {
+                                navOptions.map(({ opt, path }, index) => {
                                     return (
-                                        <Link to={path} key={key} onClick={() => slideDrawer('-100%')}>
-                                            <li className="sidebar-li">{opt}</li>
+                                        <Link to={path} key={index} onClick={() => slideDrawer('-100%')}>
+                                            <li className="sidebar-li" id={opt}>{opt}</li>
                                         </Link>
                                     )
                                 })
                             }
                             {
                                 account && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
-                                    <li className="sidebar-li">Profile</li>
+                                    <li className="sidebar-li" id='profile'>profile</li>
                                 </Link>
                             }
                         </ul>
@@ -118,9 +118,9 @@ const NavBar = () => {
             </div>
             <div className="right-nav">
                 {
-                    navOptions.map(({ opt, path }, key) => {
+                    navOptions.map(({ opt, path }, index) => {
                         return (
-                            <Link className='nav-links' to={path} key={key} id={path}>
+                            <Link className='nav-links' to={path} key={index} id={opt}>
                                 {opt}
                             </Link>)
                     })
@@ -141,9 +141,9 @@ const NavBar = () => {
                 <span className="ripple nav-switch">
                     {
                         theme === 'dark' ?
-                        <TbBrightnessUp className='nav-icons ripple' />
-                        :
-                        <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
+                            <TbBrightnessUp className='nav-icons ripple' />
+                            :
+                            <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
                     }
                 </span>
             </div>
