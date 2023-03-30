@@ -12,6 +12,7 @@ import NavBar from './components/NavBar/NavBar';
 // pages
 import Main from './components/Main';
 import Campaign from './Campaign';
+import CampaignPage from './campaign-page';
 
 
 // contexts
@@ -72,6 +73,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Campaign />} />
           <Route exact path='/main' element={<Main />} />
+          <Route exact path='/campaign-page' element={<CampaignPage />} />
         </Routes>
       </AccountProvider>
     </BrowserRouter>
