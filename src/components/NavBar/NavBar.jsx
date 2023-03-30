@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import './NavBar.css'
 
 // components
 import Switch from '../Switch/Switch'
+
+// helpers
+import { connectAccount } from '../../helpers/helper'
+
+// contexts
+import { AccountContext } from '../../context/AccountContext'
 
 // logo
 import Logo from '../../assets/images/logo.png'
@@ -17,16 +23,16 @@ import { RiMenu2Line } from 'react-icons/ri'
 
 // navigation links
 const navOptions = [
-    { opt: 'Home', path: 'form' },
-    { opt: 'Create', path: '/' },
-    { opt: 'Campaigns', path: '/' },
-    { opt: 'Requests', path: '/' },
+    { opt: 'home', path: 'form' },
+    { opt: 'create', path: '/'},
+    { opt: 'campaigns', path: '/'},
+    { opt: 'requests', path: '/' },
 ];
 
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
-    const [wallet, setWallet] = useState(false);
+    const { account, setAccount } = useContext(AccountContext);
 
     // get current theme
     useEffect(() => {
@@ -35,7 +41,7 @@ const NavBar = () => {
             document.querySelector('html').id = 'dark';
             setTheme('dark');
         }
-    })
+    }, [])
 
     // change theme
     const changeTheme = () => {
@@ -59,6 +65,11 @@ const NavBar = () => {
         setDrawerVisibility(!drawerVisibility)
     }
 
+    const connect = async () => {
+        let acc = await connectAccount();
+        setAccount(acc);
+    }
+
     return (
         <nav className='nav-bar'>
             <div className="left-nav">
@@ -75,17 +86,17 @@ const NavBar = () => {
                         </div>
                         <ul className="sidebar-ul">
                             {
-                                navOptions.map(({ opt, path }, key) => {
+                                navOptions.map(({ opt, path }, index) => {
                                     return (
-                                        <Link to={path} key={key} onClick={() => slideDrawer('-100%')}>
-                                            <li className="sidebar-li">{opt}</li>
+                                        <Link to={path} key={index} onClick={() => slideDrawer('-100%')}>
+                                            <li className="sidebar-li" id={opt}>{opt}</li>
                                         </Link>
                                     )
                                 })
                             }
                             {
-                                wallet && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
-                                    <li className="sidebar-li">Profile</li>
+                                account && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
+                                    <li className="sidebar-li" id='profile'>profile</li>
                                 </Link>
                             }
                         </ul>
@@ -107,15 +118,15 @@ const NavBar = () => {
             </div>
             <div className="right-nav">
                 {
-                    navOptions.map(({ opt, path }, key) => {
+                    navOptions.map(({ opt, path }, index) => {
                         return (
-                            <Link className='nav-links' to={path} key={key} id={path}>
+                            <Link className='nav-links' to={path} key={index} id={opt}>
                                 {opt}
                             </Link>)
                     })
                 }
                 {
-                    wallet ?
+                    account ?
                         <Link
                             className='nav-links profile-icon-nav'
                             to='profile'
@@ -124,15 +135,15 @@ const NavBar = () => {
                             <FaUserAlt />
                         </Link>
                         :
-                        <button className='btn-nav'>Connect</button>
+                        <button className='btn-nav' onClick={connect}>Connect</button>
                 }
                 <Switch className="nav-switch" onChange={changeTheme} checked={theme === 'dark' && true} />
                 <span className="ripple nav-switch">
                     {
                         theme === 'dark' ?
-                        <TbBrightnessUp className='nav-icons ripple' />
-                        :
-                        <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
+                            <TbBrightnessUp className='nav-icons ripple' />
+                            :
+                            <BsFillMoonFill className='nav-icons ripple' style={{ color: 'var(--text)' }} />
                     }
                 </span>
             </div>

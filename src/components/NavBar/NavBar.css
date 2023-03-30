@@ -10,6 +10,7 @@
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 99;
 }
 
 .nav-icons {
@@ -51,11 +52,11 @@
 }
 
 .sidebar-drawer {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: -100%;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 100;
     transition: var(--transition-400);
     display: none;
@@ -95,6 +96,11 @@
     color: var(--primary);
 }
 
+.nav-links,
+.sidebar-li {
+    text-transform: capitalize;
+}
+
 .profile-icon-nav {
     width: 1.15em;
     height: 1.15em;
@@ -109,7 +115,29 @@
 
 .profile-icon-nav:hover {
     background: var(--primary);
-    color: #fff;
+    color: var(--white);
+}
+
+
+.btn-nav {
+    border-radius: 5px;
+    border: none;
+    color: var(--text);
+    padding: .5em 1em;
+    margin-right: 20px;
+    cursor: pointer;
+    background: var(--primary);
+    color: var(--white);
+    transition: var(--transition-400);
+  }
+  
+  .btn-nav:hover {
+    background: var(--secondary);
+  }
+
+.active-nav {
+    background: #e5b44b65;
+    color: var(--primary);
 }
 
 
@@ -161,7 +189,7 @@
     }
 
     .sidebar-li:hover {
-        background: var(--primary-h);
+        background: #e9bb573c;
         color: var(--primary);
     }
 
