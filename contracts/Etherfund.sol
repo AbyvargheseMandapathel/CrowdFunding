@@ -99,7 +99,7 @@ contract Etherfund {
             "The goal is achieved already"
         );
 
-        // incrementing collected amount of campaing
+        // incrementing collected amount of campaingn
         campaigns[campaignId].collectedAmount += msg.value;
         bool newContributer = true;
         Contributor[] storage contributorsList = contributors[campaignId];
@@ -182,7 +182,7 @@ contract Etherfund {
             "You are not the fundraiser"
         );
         require(
-            campaigns[campaignId].noOfVoters >=
+            campaigns[campaignId].noOfVoters >
                 (contributors[campaignId].length / 2),
             "Not enough vote to withdraw"
         );

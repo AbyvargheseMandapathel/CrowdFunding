@@ -10,6 +10,8 @@ import './App.css';
 import NavBar from './components/NavBar/NavBar';
 
 // pages
+import CreateCampaignPage from './pages/CreateCampaignPage';
+
 import Main from './components/Main';
 import Campaign from './Campaign';
 
@@ -71,7 +73,8 @@ function App() {
       <NavBar />
         <Routes>
           <Route exact path='/' element={<Campaign />} />
-          <Route exact path='/main' element={<Main />} />
+          <Route path='/createCampaign' element={<CreateCampaignPage />} />
+          <Route path='/main' element={<Main />} />
         </Routes>
       </AccountProvider>
     </BrowserRouter>

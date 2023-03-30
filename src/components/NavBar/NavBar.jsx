@@ -24,7 +24,7 @@ import { RiMenu2Line } from 'react-icons/ri'
 // navigation links
 const navOptions = [
     { opt: 'home', path: 'form' },
-    { opt: 'create', path: '/'},
+    { opt: 'create', path: 'createCampaign'},
     { opt: 'campaigns', path: '/'},
     { opt: 'requests', path: '/' },
 ];

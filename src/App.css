@@ -7,6 +7,8 @@
 
   --secondary: #ECCA80;
 
+  --disabled: #eab54347;
+
   --bg1: #FAF9F9;
   --bg2: #F0F0F0;
 
@@ -25,6 +27,7 @@
   --transition-400: all 400ms ease;
 
   --sidebar-w: 15em;
+  --nav-h: 4em;
 
   --scroll-thumb: #dedada;
 

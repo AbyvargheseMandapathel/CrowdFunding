@@ -6,6 +6,8 @@ import { ContractWeb3Context } from './context/ContractWeb3Context';
 // components
 import CampaignCard from './components/CampaignCard/CampaignCard'
 import NotificationMsg from './components/NotificationMsg/NotificationMsg';
+import CampaignForm from './components/CampaignForm/CampaignForm';
+
 
 const Campaign = () => {
     const [data, setData] = useState(0); // sample
@@ -107,18 +109,18 @@ const Campaign = () => {
 
     const [visible, setVisible] = useState(false)
     function showNotification() {
-       //document.querySelector('.notfication-msg-container')
+        //document.querySelector('.notfication-msg-container')
         setVisible(!visible)
     }
 
     return (
         <>
             <div className="campaign-card-section">
-                <CampaignCard/>
+                <CampaignCard />
                 <button onClick={showNotification}>show</button>
             </div>
             <div>
-                {visible&&<NotificationMsg content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptates minima fugiat incidunt? Obcaecati repellat cupiditate ad sunt unde et harum totam eaque atque itaque!'/>}
+                {visible && <NotificationMsg content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptates minima fugiat incidunt? Obcaecati repellat cupiditate ad sunt unde et harum totam eaque atque itaque!' />}
 
                 <p style={{ margin: '2em 0 2em 5em' }}>account : {account}</p>
                 <div>
