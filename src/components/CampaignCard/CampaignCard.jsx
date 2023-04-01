@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import './CampaignCard.css'
 
 const CampaignCard = () => {
+    const navigate = useNavigate();
   return (
         <div className="campaign-card">
             <div className="campaign-img-container">
@@ -26,7 +28,12 @@ const CampaignCard = () => {
                 </div>
 
                 <div className="view-campaign-btn-container">
-                    <button id='view-campaign'>View Campaign</button>
+                    <button 
+                        id='view-campaign'
+                        onClick={()=> navigate('/campaign')}
+                    >
+                        View Campaign
+                    </button>
                 </div>
             </div>
         </div>

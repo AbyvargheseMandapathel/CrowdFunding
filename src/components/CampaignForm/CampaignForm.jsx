@@ -5,13 +5,16 @@ import Select from 'react-select'
 // icons
 import { AiOutlineClose } from 'react-icons/ai'
 
+// helper functions
+import { convertToTimestamp } from '../../helpers/helper'
+
 const categoryOptions = [
     { value: 'Education', label: 'Education' },
     { value: 'Hospital', label: 'Hospital' },
     { value: 'Business', label: 'Business' }
 ]
 
-const CampaignForm = () => {
+const CampaignForm = () => { convertToTimestamp('hello')
     const [currentPage, setCurrentPage] = useState(0);
     const [errors, setErrors] = useState([])
 
@@ -95,16 +98,16 @@ const CampaignForm = () => {
     const customStyles = {
         control: (baseStyles, state) => ({
             ...baseStyles,
-            borderColor: '#EAB643',
+            borderColor: 'var(--primary)',
             marginTop: '5px',
             backgroundColor: 'transparent',
             "&:hover": {
-                borderColor: '#EAB643'
+                borderColor: 'var(--primary)'
             }
         }),
         menuList: base => ({
             ...base,
-            backgroundColor: '#ECCA80',
+            backgroundColor: 'var(--bg2)',
             borderRadius: '5px'
         })
     }

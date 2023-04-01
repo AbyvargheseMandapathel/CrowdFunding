@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Requests.css'
 
-// components
-import Switch from '../Switch/Switch'
-
 // icons
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BiShowAlt } from 'react-icons/bi'
@@ -49,10 +46,9 @@ const Requests = () => {
         // const approve = window.confirm("Would you like to confirm your vote for this campaign?")
         // if (!approve) return
 
-        let spanId = `vote-btn-span-${campaignId}`
-        let btnId = `vote-btn-${campaignId}`
-        document.getElementById(spanId).style.display = 'block'
-        document.getElementById(btnId).style.background = 'var(--disabled)'
+        document.getElementById(`vote-btn-span-${campaignId}`).style.display = 'block'
+        document.getElementById(`text-content-btn-${campaignId}`).textContent = 'Approving'
+        document.getElementById(`vote-btn-${campaignId}`).style.background = 'var(--disabled)'
         
         setTimeout(() => {
             const newReq = [...requests]
@@ -105,7 +101,7 @@ const Requests = () => {
                                                     id={`vote-btn-${campaignId}`}
                                                     onClick={() => voteCampaign(campaignId)}>
                                                     <span id={`vote-btn-span-${campaignId}`}><AiOutlineLoading3Quarters /></span>
-                                                    Approve
+                                                    <p id={`text-content-btn-${campaignId}`}>Approve</p>
                                                 </button>
                                         }
                                     </td>

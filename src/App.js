@@ -16,6 +16,7 @@ import Loader from './components/Loader/Loader';
 // pages
 import CreateCampaignPage from './pages/CreateCampaignPage';
 import RequestsPage from './pages/RequestsPage';
+import HomePage from './pages/HomePage';
 
 // examples
 import Main from './components/Main';
@@ -88,7 +89,8 @@ function App() {
       <AccountProvider>
         <NavBar />
         <Routes>
-          <Route exact path='/' element={<Campaign />} />
+          <Route exact path='/' element={<HomePage />} />
+          <Route path='/campaign' element={<Campaign />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
           <Route path='/main' element={<Main />} />

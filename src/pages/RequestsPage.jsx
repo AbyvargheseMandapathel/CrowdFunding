@@ -7,6 +7,7 @@ import { AccountContext } from '../context/AccountContext'
 // components
 import Requests from '../components/Request/Requests'
 import Loader from '../components/Loader/Loader'
+import Footer from '../components/Footer/Footer'
 
 // constants
 import { LOAD_TIME } from '../helpers/constants'
@@ -16,6 +17,7 @@ const RequestsPage = () => {
     const [isLoad, setIsLoad] = useState(false);
 
     useEffect(() => {
+        document.querySelector('title').innerHTML = 'Etherfund - Requests'
         setTimeout(() => {
             setIsLoad(true)
         }, LOAD_TIME)
@@ -26,7 +28,10 @@ const RequestsPage = () => {
 
     return (
         isLoad ?
-            <Requests />
+            <>
+                <Requests />
+                <Footer />
+            </>
             :
             <Loader />
     )

@@ -53,7 +53,7 @@
   /* --card-bg: #1d1933; */
   --card-bg: #192734;
 
-  --hover-bg: #22303c;
+  --hover-bg: #152f44;
 
   --shadow:-2px 0 15px -2px  #b4acac48;
 
@@ -80,9 +80,16 @@
   background: var(--scroll-thumb);
 }
 
+::selection {
+  background: var(--primary);
+  color: var(--white);
+}
+
 body {
   background: var(--bg1);
   color: var(--text);
+  width: 100%;
+  overflow-x: hidden;
 }
 
 a,

@@ -7,16 +7,18 @@
 }
 
 .campaign-card {
-    width: 15em;
-    height: 19em;
+    width: 16em;
+    height: 21em;
     border-radius: 10px;
     padding: 10px;
     background: var(--card-bg);
+    cursor: pointer;
     transition: all 200ms;
 }
 
 .campaign-card:hover {
     box-shadow: var(--shadow);
+    background: var(--hover-bg);
 }
 
 .campaign-img-container {

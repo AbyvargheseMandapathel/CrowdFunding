@@ -1,5 +1,6 @@
 .requests-container {
     width: 100%;
+    min-height: 100vh;
     padding: 0 50px;
     margin-top: 3em;
     padding-bottom: 1em;
@@ -74,4 +75,51 @@ tr th {
 .vote-btn span > * {
     animation: spinner 500ms linear infinite;
     transform-origin: center;
+}
+
+
+
+
+@media screen and (max-width: 721px) {
+ table {
+    display: flex;
+ }   
+
+ thead tr {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+ }
+
+ thead tr th {
+    display: block;
+    white-space: nowrap;
+ }
+
+ tbody {
+    display: flex;
+ }
+
+ .request-lists {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+ }
+
+ .request-lists:nth-child(odd),
+ .request-lists:nth-child(even) {
+    background-color: transparent;
+}
+
+ .request-lists td {
+    height: 3em;
+    min-width: 10em;
+    display: block;
+    width: 100%;
+}
+
+ .request-lists td:not(:last-child):hover {
+    background: var(--hover-bg);
+ }
+
 }

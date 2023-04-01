@@ -24,7 +24,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 // navigation links
 const navOptions = [
-    { opt: 'home', path: 'form' },
+    { opt: 'home', path: '/' },
     { opt: 'create', path: 'createCampaign'},
     { opt: 'campaigns', path: '/'},
     { opt: 'requests', path: '/requests' },
