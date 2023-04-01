@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 
 // components
@@ -19,6 +19,7 @@ import { TbBrightnessUp } from 'react-icons/tb'
 import { BsFillMoonFill } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { RiMenu2Line } from 'react-icons/ri'
+import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 
 // navigation links
@@ -26,13 +27,15 @@ const navOptions = [
     { opt: 'home', path: 'form' },
     { opt: 'create', path: 'createCampaign'},
     { opt: 'campaigns', path: '/'},
-    { opt: 'requests', path: '/' },
+    { opt: 'requests', path: '/requests' },
 ];
 
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
+    
+    const navigate = useNavigate();
 
     // get current theme
     useEffect(() => {
@@ -66,8 +69,13 @@ const NavBar = () => {
     }
 
     const connect = async () => {
+        document.querySelector('.btn-nav-load').style.display = 'block';
+        document.querySelector('.btn-nav').style.background = 'var(--disabled)'
         let acc = await connectAccount();
-        setAccount(acc);
+        setTimeout(() => {
+            setAccount(acc);
+            navigate('/')
+        }, 1500)
     }
 
     return (
@@ -135,7 +143,10 @@ const NavBar = () => {
                             <FaUserAlt />
                         </Link>
                         :
-                        <button className='btn-nav' onClick={connect}>Connect</button>
+                        <button className='btn-nav' onClick={connect}>
+                            <span className='btn-nav-load'><AiOutlineLoading3Quarters/></span>
+                            Connect
+                        </button>
                 }
                 <Switch className="nav-switch" onChange={changeTheme} checked={theme === 'dark' && true} />
                 <span className="ripple nav-switch">

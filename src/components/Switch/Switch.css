@@ -1,16 +1,16 @@
 .theme-switch {
-    /* checkbox */
-    /* display: none;  */
     width: 0;
     height: 0;
     visibility: hidden;
+    color: red;
 }
 
 .switch-track {
-    width: 2.75em;
+    display: inline-block;
     height: 1em;
     border-radius: 1.5em;
-    background: #b9b7b79f;
+    width: 2.75em;
+    background: #b9b7b79f; 
     margin-right: 1em;
     position: relative;
     cursor: pointer;

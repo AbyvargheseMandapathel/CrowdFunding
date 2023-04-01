@@ -17,7 +17,6 @@
 
 .campaign-card:hover {
     box-shadow: var(--shadow);
-    transform: scale(1.01);
 }
 
 .campaign-img-container {

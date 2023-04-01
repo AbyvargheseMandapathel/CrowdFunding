@@ -1,0 +1,77 @@
+.requests-container {
+    width: 100%;
+    padding: 0 50px;
+    margin-top: 3em;
+    padding-bottom: 1em;
+    overflow-y: hidden;
+}
+
+.requests-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 10px;
+    text-align: center;
+    position: relative;
+}
+
+tr th {
+    background-color: var(--bg1);
+    font-size: 1em;
+}
+
+.request-lists {
+    cursor: pointer;
+    height: 3em;
+}
+
+.request-lists:nth-child(odd) {
+    background-color: var(--bg2);
+}
+
+.request-lists:nth-child(even) {
+    background-color: var(--bg1);
+}
+
+.request-lists:hover {
+    background-color: var(--hover-bg);
+}
+
+.request-lists td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vote-btn {
+    padding: 8px 15px;  
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    border-radius: 5px; 
+    transition: 200ms;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.vote-btn:hover {
+    background-color: var(--disabled);
+}
+
+.vote-btn span {
+    display: none;
+}
+
+.vote-btn span > * {
+    animation: spinner 500ms linear infinite;
+    transform-origin: center;
+}

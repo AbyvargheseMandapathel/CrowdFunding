@@ -4,6 +4,7 @@ import { ContractWeb3Context } from './context/ContractWeb3Context';
 
 
 // components
+import Requests from './components/Request/Requests';
 import CampaignCard from './components/CampaignCard/CampaignCard'
 import NotificationMsg from './components/NotificationMsg/NotificationMsg';
 import CampaignForm from './components/CampaignForm/CampaignForm';

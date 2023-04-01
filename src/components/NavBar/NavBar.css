@@ -130,11 +130,23 @@
     background: var(--primary);
     color: var(--white);
     transition: var(--transition-400);
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+  }
+
+  .btn-nav span {
+    display: none;
   }
   
   .btn-nav:hover {
     background: var(--secondary);
   }
+
+  .btn-nav span > * {
+    animation: spinner 500ms linear infinite;
+    transform-origin: center;
+}
 
 .active-nav {
     background: #e5b44b65;

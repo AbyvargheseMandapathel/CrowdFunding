@@ -1,16 +1,21 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Web3 from 'web3';
-
+import './App.css';
 import Etherfund from './contracts/Etherfund.json'
 
-import './App.css';
+
+
+// constants
+import { LOAD_TIME } from './helpers/constants';
 
 // components
 import NavBar from './components/NavBar/NavBar';
+import Loader from './components/Loader/Loader';
 
 // pages
 import CreateCampaignPage from './pages/CreateCampaignPage';
+import RequestsPage from './pages/RequestsPage';
 
 // examples
 import Main from './components/Main';
@@ -22,8 +27,16 @@ import { AccountProvider } from './context/AccountContext';
 import { ContractWeb3Context } from './context/ContractWeb3Context';
 
 function App() {
+  const [isLoad, setIsLoad] = useState(false)
   const { setContract, setWeb3 } = useContext(ContractWeb3Context);
   const [contractWeb3, setContractWeb3] = useState(null)
+
+  // loading animation
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoad(true)
+    }, LOAD_TIME)
+  })
 
   // for changing theme when loading
   useEffect(() => {
@@ -63,10 +76,12 @@ function App() {
   }, []);
 
   if (!contractWeb3) {
-    return (
-      <h1>Loading</h1>
-    )
+    // return (<h1>Loading</h1>)
+    console.warn("No contracts available")
   }
+
+  if (!isLoad)
+    return <Loader />
 
   return (
     <BrowserRouter>
@@ -75,6 +90,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Campaign />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
+          <Route path='/requests' element={<RequestsPage />} />
           <Route path='/main' element={<Main />} />
         </Routes>
       </AccountProvider>

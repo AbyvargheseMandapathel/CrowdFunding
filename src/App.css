@@ -7,7 +7,7 @@
 
   --secondary: #ECCA80;
 
-  --disabled: #eab54347;
+  --disabled: #9c7216b3;
 
   --bg1: #FAF9F9;
   --bg2: #F0F0F0;
@@ -40,13 +40,15 @@
   --bg2: #191240; */
 
   --bg1: #08192a;
-  --bg2: #112031;
+  --bg2: #1b2c3e;
 
   /* --text: #D7D9DD;
   --text-variant: #e0e0e0b3; */
   --text: #fff;
   --text-variant: #8899a6;
   --text-variant: #cbced0;
+
+  --disabled: #eab54347;
 
   /* --card-bg: #1d1933; */
   --card-bg: #192734;
@@ -122,6 +124,11 @@ a:active {
 }
 
 
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
 
 
 
@@ -151,6 +158,15 @@ a:active {
   box-shadow: var(--shadow);
 }
 
+
+.loader-container {
+  width: 100%;
+  height: calc(100vh - var(--nav-h));
+  background: var(--bg1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .loader {
   width: 3em;

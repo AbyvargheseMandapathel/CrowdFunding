@@ -3,14 +3,7 @@ import React from 'react'
 const Main = () => {
   return (
     <div>
-        <svg className='loader' viewBox='0 0 50 50'>
-          <circle
-              className='loader-circle'
-              cx='25'
-              cy='25'
-              r='20'
-          />
-        </svg>
+        
       <div className='card'>
         <h1>Card</h1>
         <span className='card-desc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, officia.</span>      
