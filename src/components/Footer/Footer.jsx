@@ -17,8 +17,8 @@ const Footer = () => {
                         Abc Road <br />
                         Kerala, Kottayam, 686663
                     </address>
-                    <p><span className='icon-phone-mail'><MdOutlineEmail /></span> etherfund2022@gmail.com</p>
-                    <p><span className='icon-phone-mail'><BsTelephone /></span> +91 9876543210</p>
+                    <p><span className='icon-phone-mail'><MdOutlineEmail /></span> <span style={{color:'var(--primary)'}}>etherfund2022@gmail.com</span></p>
+                    <p><span className='icon-phone-mail'><BsTelephone /></span> <span style={{color:'var(--primary)'}}>+91 9876543210</span></p>
                 </div>
 
                 <div className="foot-right">

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Requests.css'
 
 // icons
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BiShowAlt } from 'react-icons/bi'
-import { BsClipboard } from 'react-icons/bs'
 
 const allRequests = [
     {

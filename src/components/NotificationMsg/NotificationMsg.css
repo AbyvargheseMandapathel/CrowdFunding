@@ -12,6 +12,7 @@
     transition: all 500ms;
     box-shadow: var(--shadow);
     cursor: pointer;
+    z-index: 15;
 }
 
 .notification-content {
@@ -20,6 +21,7 @@
     font-size: .75em;
     padding: 5px;
     display: flex;
+    justify-content: center;
     align-items: center;
     overflow: hidden;
 }

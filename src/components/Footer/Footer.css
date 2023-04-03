@@ -38,7 +38,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .foot-right a:hover {
@@ -61,6 +61,11 @@ footer {
     .foot-right,
     .foot-left {
         width: 100%;
+    }
+
+    .foot-left h1 {
+        text-align: center;
+        margin: 1em 0;
     }
 
     .foot-right {

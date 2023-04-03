@@ -173,6 +173,7 @@ input[type="file"]::file-selector-button {
 }
 
 .submit-btn {
+    min-width: 15em;
     padding: .75em 3em;
     border-radius: 5px;
     border: none;

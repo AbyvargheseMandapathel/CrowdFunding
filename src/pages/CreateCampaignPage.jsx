@@ -8,6 +8,7 @@ import Footer from '../components/Footer/Footer'
 
 // context
 import { AccountContext } from '../context/AccountContext'
+import { ContractWeb3Context } from '../context/ContractWeb3Context'
 
 // images
 import RaiseFund from '../assets/images/raise-fund.svg'
@@ -17,24 +18,27 @@ import { LOAD_TIME } from '../helpers/constants'
 
 const CreateCampaignPage = () => {
   const { account } = useContext(AccountContext);
-  const [isLoad, setIsLoad] = useState(false)
+  const {contract, web3} = useContext(ContractWeb3Context);
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
     document.querySelector('title').innerHTML = 'Etherfund - Create Campaign'
     setTimeout(() => {
       setIsLoad(true)
     }, LOAD_TIME)
-  })
+  });
 
-  if (account == '')
+  if (account === '')
     return <Navigate to="/login" />
+  if(contract==='' || contract===undefined)
+    console.warn("%cContract not available", "background:#EAB643; color:#fff; padding:0 1em;");
 
   return (
     isLoad ?
       <>
         <section className='create-campaign-container'>
           <div className="form-left">
-            <CampaignForm />
+            <CampaignForm account={account} contract={contract} web3={web3}/>
           </div>
           <div className="form-right">
             <img src={RaiseFund} alt="Create a campaign" />

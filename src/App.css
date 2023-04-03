@@ -24,6 +24,8 @@
 
   /* --ripple: #a8a0a067; */
 
+  --active-link-bg: #d89a1551;
+
   --transition-400: all 400ms ease;
 
   --sidebar-w: 15em;
@@ -50,6 +52,8 @@
 
   --disabled: #eab54347;
 
+  --active-link-bg: #f2b0213e;
+
   /* --card-bg: #1d1933; */
   --card-bg: #192734;
 
@@ -60,6 +64,8 @@
   /* --ripple: #a8a0a067; */
 
   --scroll-thumb: #ffffff18;
+
+  --link-h: #ecca8027;
 }
 
 * {

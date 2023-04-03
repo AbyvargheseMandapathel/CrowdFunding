@@ -87,7 +87,7 @@ tr th {
 
  thead tr {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     flex-direction: column;
  }
 
@@ -103,7 +103,7 @@ tr th {
  .request-lists {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
  }
 
  .request-lists:nth-child(odd),

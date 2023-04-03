@@ -78,7 +78,7 @@ function App() {
 
   if (!contractWeb3) {
     // return (<h1>Loading</h1>)
-    console.warn("No contracts available")
+    console.warn("%cNo contracts available", "background:#EAB643; color:#fff; font-size:16px; padding: 5px 10px;")
   }
 
   if (!isLoad)

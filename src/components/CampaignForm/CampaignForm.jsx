@@ -1,6 +1,10 @@
-import React, { useState } from 'react'
-import './CampaignForm.css'
+import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
+import './CampaignForm.css'
+
+// components
+import NotificationMsg from '../NotificationMsg/NotificationMsg'
 
 // icons
 import { AiOutlineClose } from 'react-icons/ai'
@@ -14,20 +18,26 @@ const categoryOptions = [
     { value: 'Business', label: 'Business' }
 ]
 
-const CampaignForm = () => { convertToTimestamp('hello')
+const CampaignForm = ({ account, contract, web3 }) => {
     const [currentPage, setCurrentPage] = useState(0);
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]);
+    const [createBtnVisibility, setCreateBtnVisibility] = useState(true);
+    const [created, setCreated] = useState(false);
+
+    const creatingBtnTextRef = useRef();
+    const navigate = useNavigate();
 
     // form data
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
     const [amountRequired, setAmountRequired] = useState('');
     const [description, setDescription] = useState('');
-    const [deadline, setDeadline] = useState('');
+    const [deadline, setDeadline] = useState(0);
     const [image, setImage] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setCreateBtnVisibility(false);
         let error = validateInputs();
 
         if (error) return
@@ -38,18 +48,47 @@ const CampaignForm = () => { convertToTimestamp('hello')
             convert amount required from ether to wei
         */
 
-        let desc = description.replaceAll('\n', ' ')
+        let desc = description.replaceAll('\n', ' '); // remove \n
+        let timestamp = convertToTimestamp(deadline); // convert date to timestamp
+
+        let contributionInWei = web3.utils.toWei(amountRequired, 'ether');
 
         const params = {
             title,
             desc,
             category,
             image,
-            deadline,
-            amountRequired
+            timestamp,
+            contributionInWei
         }
-
         console.warn(params)
+
+        createCampaign(params);
+
+    }
+
+    async function createCampaign({ title, desc, category, image, timestamp, contributionInWei }) {
+        try {
+            await contract.methods.createCampaign(
+                title,
+                desc,
+                category,
+                image,
+                timestamp,
+                contributionInWei
+            ).send({
+                from: account,
+                gas: '1000000' // max gas to use
+            })
+            creatingBtnTextRef.current.textContent = "Created";
+            setCreated(true);
+
+            setTimeout(() => {
+                navigate("/")
+            }, 1500)
+        } catch (err) {
+            console.warn(err)
+        } 
     }
 
     const validateInputs = () => {
@@ -65,9 +104,22 @@ const CampaignForm = () => { convertToTimestamp('hello')
             error = true
         }
 
+        let currentDate = new Date();
+        let givenDate = new Date(deadline); // input date
+
+        const timeDiff = Math.abs(currentDate.getTime() - givenDate.getTime()); // difference in milliseconds
+        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); // difference in days
+
+        if (diffDays <= 2) {
+            setErrors((prevErr) => [...prevErr, "Deadline must be greater than 2 days from now"])
+            error = true
+        }
+
+
+
         // limit array size
         if (errors.length > 3) {
-            const newArray = errors.slice(0, 2); // create a new array with only the first three elements
+            const newArray = errors.slice(0, 3); // create a new array with only the first three elements
             setErrors(newArray); // update the state with the new array
         }
         return error
@@ -114,6 +166,7 @@ const CampaignForm = () => { convertToTimestamp('hello')
 
     return (
         <>
+            {created && <NotificationMsg content="New campaign created!"/>}
             <div className='form-errors'>
                 {
                     errors.map((err, index) => {
@@ -200,12 +253,20 @@ const CampaignForm = () => { convertToTimestamp('hello')
                     </div>
 
                     <div className="submit-button-container">
-                        <button
-                            className='submit-btn'
-                            onClick={handleSubmit}
-                        >
-                            Create Campaign
-                        </button>
+                        {
+                            createBtnVisibility?
+                            <button
+                                className='submit-btn'
+                                onClick={handleSubmit}
+                            >
+                                <span>Create Campaign</span>
+                            </button>
+                            :
+                            <button className="submit-btn" disabled={true}>
+                                <span ref={creatingBtnTextRef}>Creating</span>
+                                {created && <span style={{ marginLeft: '5px' }}>&#10004;</span>}
+                            </button>
+                        }
                     </div>
                 </div>
 

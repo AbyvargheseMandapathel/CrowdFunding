@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import './NavBar.css'
 
 // components
@@ -25,8 +25,8 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 // navigation links
 const navOptions = [
     { opt: 'home', path: '/' },
-    { opt: 'create', path: 'createCampaign'},
-    { opt: 'campaigns', path: '/'},
+    { opt: 'create', path: '/createCampaign' },
+    { opt: 'campaigns', path: '/' },
     { opt: 'requests', path: '/requests' },
 ];
 
@@ -34,7 +34,7 @@ const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
-    
+
     const navigate = useNavigate();
 
     // get current theme
@@ -85,29 +85,42 @@ const NavBar = () => {
                     <span className="ripple drawer-opener" onClick={() => slideDrawer('0%')}>
                         <RiMenu2Line className='nav-icons' />
                     </span>
-                    <img src={Logo} className='logo-nav' alt="" />
+                    <NavLink to="/"><img src={Logo} className='logo-nav' alt="" /></NavLink>
                 </div>
+
                 <div className="sidebar-drawer">
                     <div className="sidebar">
                         <div className="brand-nav brand-nav-sidebar">
-                            <img src={Logo} className="logo-nav" alt="" />
+                            <NavLink to="/" onClick={() => slideDrawer("-100%")}>
+                                <img src={Logo} className="logo-nav" alt="" />
+                            </NavLink>
                         </div>
+
                         <ul className="sidebar-ul">
                             {
                                 navOptions.map(({ opt, path }, index) => {
                                     return (
-                                        <Link to={path} key={index} onClick={() => slideDrawer('-100%')}>
+                                        <NavLink
+                                            to={path}
+                                            key={index}
+                                            onClick={() => slideDrawer('-100%')}
+                                        >
                                             <li className="sidebar-li" id={opt}>{opt}</li>
-                                        </Link>
+                                        </NavLink>
                                     )
                                 })
                             }
                             {
-                                account && <Link to='/profile' onClick={() => slideDrawer('-100%')}>
+                                account &&
+                                <NavLink
+                                    to='/profile'
+                                    onClick={() => slideDrawer('-100%')}
+                                >
                                     <li className="sidebar-li" id='profile'>profile</li>
-                                </Link>
+                                </NavLink>
                             }
                         </ul>
+                        
                         <div className="switch-theme-sidear">
                             <Switch onChange={changeTheme} checked={theme === 'dark' && true} />
                             <span className="ripple">
@@ -123,32 +136,41 @@ const NavBar = () => {
                     </div>
                     <div className="drawer-closer" onClick={() => slideDrawer('-100%')}></div>
                 </div>
+
             </div>
+
             <div className="right-nav">
                 {
                     navOptions.map(({ opt, path }, index) => {
                         return (
-                            <Link className='nav-links' to={path} key={index} id={opt}>
+                            <NavLink
+                                to={path}
+                                className='nav-links'
+                                key={index}
+                                id={opt}
+                            >
                                 {opt}
-                            </Link>)
+                            </NavLink>)
                     })
                 }
                 {
                     account ?
-                        <Link
-                            className='nav-links profile-icon-nav'
+                        <NavLink
                             to='profile'
+                            className='nav-links profile-icon-nav'
                             id='profile'
                         >
                             <FaUserAlt />
-                        </Link>
+                        </NavLink>
                         :
                         <button className='btn-nav' onClick={connect}>
-                            <span className='btn-nav-load'><AiOutlineLoading3Quarters/></span>
+                            <span className='btn-nav-load'><AiOutlineLoading3Quarters /></span>
                             Connect
                         </button>
                 }
+                
                 <Switch className="nav-switch" onChange={changeTheme} checked={theme === 'dark' && true} />
+                
                 <span className="ripple nav-switch">
                     {
                         theme === 'dark' ?
