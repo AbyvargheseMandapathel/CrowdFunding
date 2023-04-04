@@ -61,10 +61,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
             timestamp,
             contributionInWei
         }
-        console.warn(params)
-
         createCampaign(params);
-
     }
 
     async function createCampaign({ title, desc, category, image, timestamp, contributionInWei }) {

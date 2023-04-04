@@ -7,11 +7,12 @@ import Etherfund from './contracts/Etherfund.json'
 
 
 // constants
-import { LOAD_TIME } from './helpers/constants';
+// import { LOAD_TIME } from './helpers/constants';
 
 // components
 import NavBar from './components/NavBar/NavBar';
-import Loader from './components/Loader/Loader';
+// import Loader from './components/Loader/Loader';
+import Login from './components/Login/Login';
 
 // pages
 import CreateCampaignPage from './pages/CreateCampaignPage';
@@ -28,16 +29,16 @@ import { AccountProvider } from './context/AccountContext';
 import { ContractWeb3Context } from './context/ContractWeb3Context';
 
 function App() {
-  const [isLoad, setIsLoad] = useState(false)
+  // const [isLoad, setIsLoad] = useState(false)
   const { setContract, setWeb3 } = useContext(ContractWeb3Context);
   const [contractWeb3, setContractWeb3] = useState(null)
 
   // loading animation
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoad(true)
-    }, LOAD_TIME)
-  })
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoad(true)
+  //   }, LOAD_TIME)
+  // })
 
   // for changing theme when loading
   useEffect(() => {
@@ -81,8 +82,8 @@ function App() {
     console.warn("%cNo contracts available", "background:#EAB643; color:#fff; font-size:16px; padding: 5px 10px;")
   }
 
-  if (!isLoad)
-    return <Loader />
+  // if (!isLoad)
+  //   return <Loader />
 
   return (
     <BrowserRouter>
@@ -90,7 +91,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/login' element={<Login />} />
           <Route path='/campaign' element={<Campaign />} />
+          <Route path='/campaign/:id' element={<Main />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
           <Route path='/main' element={<Main />} />

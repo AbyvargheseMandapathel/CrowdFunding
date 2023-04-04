@@ -74,7 +74,7 @@ const NavBar = () => {
         let acc = await connectAccount();
         setTimeout(() => {
             setAccount(acc);
-            navigate('/')
+            navigate(-1)
         }, 1500)
     }
 

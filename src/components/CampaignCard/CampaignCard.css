@@ -7,7 +7,8 @@
 }
 
 .campaign-card {
-    width: 16em;
+    min-width: 14em;
+    max-width: 16em;
     height: 21em;
     border-radius: 10px;
     padding: 10px;

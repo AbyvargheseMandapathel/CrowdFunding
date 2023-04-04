@@ -43,6 +43,7 @@
     margin-top: 3px;
     display: flex;
     background-color: rgb(222, 63, 63);
+    color: var(--white);
     transition: var(--transition-400);
 }
 

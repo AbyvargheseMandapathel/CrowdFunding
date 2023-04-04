@@ -18,7 +18,7 @@ import { LOAD_TIME } from '../helpers/constants'
 
 const CreateCampaignPage = () => {
   const { account } = useContext(AccountContext);
-  const {contract, web3} = useContext(ContractWeb3Context);
+  const { contract, web3 } = useContext(ContractWeb3Context);
   const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,8 @@ const CreateCampaignPage = () => {
 
   if (account === '')
     return <Navigate to="/login" />
-  if(contract==='' || contract===undefined)
+
+  if (contract === '' || contract === undefined)
     console.warn("%cContract not available", "background:#EAB643; color:#fff; padding:0 1em;");
 
   return (
@@ -38,7 +39,7 @@ const CreateCampaignPage = () => {
       <>
         <section className='create-campaign-container'>
           <div className="form-left">
-            <CampaignForm account={account} contract={contract} web3={web3}/>
+            <CampaignForm account={account} contract={contract} web3={web3} />
           </div>
           <div className="form-right">
             <img src={RaiseFund} alt="Create a campaign" />
