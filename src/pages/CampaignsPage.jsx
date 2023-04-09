@@ -29,14 +29,9 @@ const CampaignsPage = () => {
 
     let filteredList
     if (category === 'All')
-        filteredList = campaigns
-    else {
-        filteredList = campaigns.filter(campaign => {
-            if (campaign.category === category) {
-                return campaign
-            }
-        });
-    }
+        filteredList = campaigns;
+    else
+        filteredList = campaigns.filter(campaign => campaign.category === category);
 
 
     return (

@@ -27,6 +27,7 @@ const ProfilePage = () => {
   if (account === '' || account === undefined)
     return <Navigate to="/login" />
 
+
   return (
     isLoad ?
       <>

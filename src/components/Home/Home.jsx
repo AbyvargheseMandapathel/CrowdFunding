@@ -15,6 +15,7 @@ import { LINKS } from '../../helpers/constants'
 const Home = () => {
     const { contract } = useContext(ContractWeb3Context);
     const { campaigns } = useContext(CampaignsContext);
+    console.warn(campaigns)
     
     const [eduCampaigns, setEduCampaigns] = useState([]);
     const [medCampaigns, setMedicalCampaigns] = useState([]);

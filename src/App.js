@@ -91,8 +91,6 @@ function App() {
     )
   }
 
-  // if (!isLoad)
-  //   return <Loader />
 
   return (
     <BrowserRouter>

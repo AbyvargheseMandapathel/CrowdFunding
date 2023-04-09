@@ -11,6 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 // helper functions
 import { convertToTimestamp } from '../../helpers/helper'
+import { pinataSaveImage } from '../../helpers/web3Storage'
 
 const categoryOptions = [
     { value: 'Education', label: 'Education' },
@@ -25,6 +26,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
     const [created, setCreated] = useState(false);
 
     const creatingBtnTextRef = useRef();
+    const imgRef = useRef();
     const navigate = useNavigate();
 
     // form data
@@ -35,12 +37,12 @@ const CampaignForm = ({ account, contract, web3 }) => {
     const [deadline, setDeadline] = useState(0);
     const [image, setImage] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setCreateBtnVisibility(false);
-        let error = validateInputs();
+        // let error = validateInputs();
 
-        if (error) return
+        // if (error) return
 
         /*
             save image on ipfs and set 'image' as url
@@ -53,24 +55,34 @@ const CampaignForm = ({ account, contract, web3 }) => {
 
         let contributionInWei = web3.utils.toWei(amountRequired, 'ether');
 
+        let url = await pinataSaveImage(imgRef.current.files[0]);
+
         const params = {
             title,
             desc,
             category,
-            image,
+            url,
             timestamp,
             contributionInWei
         }
-        createCampaign(params);
+
+       createCampaign(params);
     }
 
-    async function createCampaign({ title, desc, category, image, timestamp, contributionInWei }) {
+    // async function saveImage() {
+    //     // console.warn(imgRef.current.files[0])
+    //    let url = await pinataSaveImage(imgRef.current.files[0]);
+    //    setImage(url);
+    // }
+
+
+    async function createCampaign({ title, desc, category, url, timestamp, contributionInWei }) {
         try {
             await contract.methods.createCampaign(
                 title,
                 desc,
                 category,
-                image,
+                url,
                 timestamp,
                 contributionInWei
             ).send({
@@ -243,9 +255,12 @@ const CampaignForm = ({ account, contract, web3 }) => {
                         <input
                             className='inputs'
                             type="file"
+                            ref={imgRef}
                             accept='".jpg, .JPG, .jpeg, .JPEG, .png, .PNG'
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
+                            // value={image!==null? image: ''}
+                            onChange={(e) => {
+                                setImage(imgRef.current.files)
+                            }}
                         />
                     </div>
 

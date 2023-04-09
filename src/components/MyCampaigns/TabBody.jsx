@@ -17,7 +17,7 @@ const TabBody = ({ campaigns }) => {
             {
                 campaigns.length > 0 && campaigns.slice().reverse().map(campaign => {
                     return (
-                        <Link to={`/campaign/${campaign.id}`}>
+                        <Link to={`/campaign/${campaign.id}`} key={campaign.id}>
                             <div className={load ? "tab-img-container" : "tab-img-container skeleton"}>
                                 <img style={{ visibility: load ? 'visible' : 'hidden' }} src={Img2} alt="" />
                                 {load && <p className='tab-img-desc text-overflow-hide'>{campaign.title}</p>}

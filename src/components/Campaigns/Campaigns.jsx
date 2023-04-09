@@ -1,9 +1,6 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import './Campaigns.css'
-
-// contexts
-import { CampaignsContext } from '../../context/CampaignsContext'
 
 // component
 import CampaignCard from '../CampaignCard/CampaignCard'
