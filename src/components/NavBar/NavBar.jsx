@@ -26,7 +26,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 const navOptions = [
     { opt: 'home', path: '/' },
     { opt: 'create', path: '/createCampaign' },
-    { opt: 'campaigns', path: '/' },
+    { opt: 'campaigns', path: '/campaigns' },
     { opt: 'requests', path: '/requests' },
 ];
 
@@ -72,9 +72,11 @@ const NavBar = () => {
         document.querySelector('.btn-nav-load').style.display = 'block';
         document.querySelector('.btn-nav').style.background = 'var(--disabled)'
         let acc = await connectAccount();
+        if(!account)
+            navigate('/')
         setTimeout(() => {
             setAccount(acc);
-            navigate(-1)
+            navigate(-2)
         }, 1500)
     }
 

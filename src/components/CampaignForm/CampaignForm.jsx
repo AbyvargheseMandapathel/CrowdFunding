@@ -14,7 +14,7 @@ import { convertToTimestamp } from '../../helpers/helper'
 
 const categoryOptions = [
     { value: 'Education', label: 'Education' },
-    { value: 'Hospital', label: 'Hospital' },
+    { value: 'Medical', label: 'Medical' },
     { value: 'Business', label: 'Business' }
 ]
 

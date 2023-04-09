@@ -1,3 +1,7 @@
+* {
+    padding: 0;
+}
+
 .campaign-card-section {
     width: 100%;
     min-height: 100vh;
@@ -8,24 +12,26 @@
 
 .campaign-card {
     min-width: 14em;
-    max-width: 16em;
-    height: 21em;
+    max-width: 17em;
+    height: 24em;
     border-radius: 10px;
     padding: 10px;
     background: var(--card-bg);
     cursor: pointer;
     transition: all 200ms;
+    transform: scale(1);
 }
 
 .campaign-card:hover {
     box-shadow: var(--shadow);
     background: var(--hover-bg);
+    transform: scale(1.05);
 }
 
 .campaign-img-container {
     width: 100%;
     height: 50%;
-    border-radius: 10px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
@@ -37,7 +43,7 @@
 
 .campaign-card-details {
     width: 100%;
-    padding-top: 10px;
+    margin-top: 5px;
 }
 
 
@@ -97,12 +103,25 @@
     border: none;
     outline: nonoe;
     background: var(--black);
-    /* background: var(--primary); */
     color: var(--white);
     font-size: 14px;
     cursor: pointer;
+    margin-top: 1em;
 }
 
 :root#dark  #view-campaign {
     background: var(--primary);
+}
+
+@media screen and (max-width: 771px) {
+    .campaign-card {
+        height: 21em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .campaign-card {
+        height: 21em;
+        width: 100%;
+    }
 }

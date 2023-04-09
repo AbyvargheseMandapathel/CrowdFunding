@@ -4,26 +4,29 @@ import './Home.css'
 
 // contexts
 import { ContractWeb3Context } from '../../context/ContractWeb3Context'
+import { CampaignsContext } from '../../context/CampaignsContext'
 
 // components
 import CampaignCard from '../CampaignCard/CampaignCard'
 
+// constants
+import { LINKS } from '../../helpers/constants'
+
 const Home = () => {
-    const [campaigns, setCampaigns] = useState([]);
     const { contract } = useContext(ContractWeb3Context);
+    const { campaigns } = useContext(CampaignsContext);
+    
+    const [eduCampaigns, setEduCampaigns] = useState([]);
+    const [medCampaigns, setMedicalCampaigns] = useState([]);
 
     useEffect(() => {
-        async function getCampaigns() {
-            try {
-                const allCampaigns = await contract.methods.getIncompleteCampaigns().call();
-                setCampaigns(allCampaigns)
-                //  console.warn(allCampaigns[0].category);
-            } catch (err) {
-                console.warn("\nError\n"+err);
-            }
-        }
-        contract && getCampaigns();
+        const educationCampaigns = campaigns.filter(campaign => campaign[6] === 'Education' );
+        setEduCampaigns(educationCampaigns);
+
+        const medicalCampaigns = campaigns.filter(campaign => campaign[6] === 'Medical');
+        setMedicalCampaigns(medicalCampaigns);
     }, []);
+
 
     if (contract === '' || contract === undefined)
         return <h1>No Contracts Available</h1>
@@ -41,23 +44,43 @@ const Home = () => {
                     <CampaignCard campaign={campaigns[campaigns.length - 2]} />
                 </div>
                 <span className='show-more-campaigns-home'>
-                    <Link to="/campaigns">Show More</Link>
+                    <Link to={LINKS.all}>Show More</Link>
                 </span>
             </div>
 
-            <div className="campaigns-home-container">
-                <h1>New Campaigns</h1>
-                <div className="campaigns-home">
-                    <CampaignCard campaign={campaigns[campaigns.length - 1]} />
-                    <CampaignCard campaign={campaigns[campaigns.length - 2]} />
-                    <CampaignCard campaign={campaigns[campaigns.length - 3]} />
-                    <CampaignCard campaign={campaigns[campaigns.length - 1]} />
-                    <CampaignCard campaign={campaigns[campaigns.length - 2]} />
+            {
+                eduCampaigns &&
+                <div className="campaigns-home-container">
+                    <h1 className='heading-campaign-type'>Educational Campaigns</h1>
+                    <div className="campaigns-home">
+                        <CampaignCard campaign={eduCampaigns[0]} />
+                        <CampaignCard campaign={eduCampaigns[1]} />
+                        <CampaignCard campaign={eduCampaigns[2]} />
+                        <CampaignCard campaign={eduCampaigns[3]} />
+                        <CampaignCard campaign={eduCampaigns[4]} />
+                    </div>
+                    <span className='show-more-campaigns-home'>
+                        <Link to={LINKS.education}>Show More</Link>
+                    </span>
                 </div>
-                <span className='show-more-campaigns-home'>
-                    <Link to="/campaigns">Show More</Link>
-                </span>
-            </div>
+            }
+
+            {
+                medCampaigns &&
+                <div className="campaigns-home-container">
+                    <h1 className='heading-campaign-type'>Medical Campaigns</h1>
+                    <div className="campaigns-home">
+                        <CampaignCard campaign={medCampaigns[0]} />
+                        <CampaignCard campaign={medCampaigns[1]} />
+                        <CampaignCard campaign={medCampaigns[2]} />
+                        <CampaignCard campaign={medCampaigns[3]} />
+                        <CampaignCard campaign={medCampaigns[4]} />
+                    </div>
+                    <span className='show-more-campaigns-home'>
+                        <Link to={LINKS.medical}>Show More</Link>
+                    </span>
+                </div>
+            }
         </section>
     )
 }

@@ -26,7 +26,7 @@ const CreateCampaignPage = () => {
     setTimeout(() => {
       setIsLoad(true)
     }, LOAD_TIME)
-  });
+  }, []);
 
   if (account === '')
     return <Navigate to="/login" />

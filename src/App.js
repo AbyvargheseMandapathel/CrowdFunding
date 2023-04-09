@@ -18,27 +18,23 @@ import Login from './components/Login/Login';
 import CreateCampaignPage from './pages/CreateCampaignPage';
 import RequestsPage from './pages/RequestsPage';
 import HomePage from './pages/HomePage';
+import CampaignsPage from './pages/CampaignsPage';
+import ProfilePage from './pages/ProfilePage';
 
 // examples
 import Main from './components/Main';
-import Campaign from './Campaign';
 
 
 // contexts
 import { AccountProvider } from './context/AccountContext';
 import { ContractWeb3Context } from './context/ContractWeb3Context';
+import { CampaignsContext } from './context/CampaignsContext'
 
 function App() {
-  // const [isLoad, setIsLoad] = useState(false)
   const { setContract, setWeb3 } = useContext(ContractWeb3Context);
-  const [contractWeb3, setContractWeb3] = useState(null)
+  const { setCampaigns } = useContext(CampaignsContext);
 
-  // loading animation
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsLoad(true)
-  //   }, LOAD_TIME)
-  // })
+  const [contractWeb3, setContractWeb3] = useState(null);
 
   // for changing theme when loading
   useEffect(() => {
@@ -72,6 +68,16 @@ function App() {
       setContract(contractInstance);
       setWeb3(web3Instance);
       setContractWeb3({ contractInstance, web3Instance })
+
+      async function getCampaigns() {
+        try {
+          let allCampaigns = await contractInstance.methods.getIncompleteCampaigns().call();
+          setCampaigns(allCampaigns);
+        } catch (err) {
+          console.warn(err);
+        }
+      }
+      contractInstance && getCampaigns();
     }
 
     provider && template()
@@ -79,7 +85,10 @@ function App() {
 
   if (!contractWeb3) {
     // return (<h1>Loading</h1>)
-    console.warn("%cNo contracts available", "background:#EAB643; color:#fff; font-size:16px; padding: 5px 10px;")
+    console.warn(
+      "%cNo contracts available",
+      "background:#EAB643; color:#fff; font-size:16px; padding: 5px 10px;"
+    )
   }
 
   // if (!isLoad)
@@ -92,10 +101,11 @@ function App() {
         <Routes>
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/login' element={<Login />} />
-          <Route path='/campaign' element={<Campaign />} />
+          <Route path='/campaigns/:category' element={<CampaignsPage />} />
           <Route path='/campaign/:id' element={<Main />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
           <Route path='/main' element={<Main />} />
         </Routes>
       </AccountProvider>

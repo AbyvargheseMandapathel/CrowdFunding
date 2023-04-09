@@ -42,6 +42,7 @@ footer {
 }
 
 .foot-right a:hover {
+    transition: var(--transition-400);
     color: var(--primary);
 }
 

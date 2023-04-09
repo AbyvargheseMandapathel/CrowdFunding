@@ -16,6 +16,7 @@
 .heading-campaign-type {
     font-size: 1.5em;
     margin-bottom: .5em;
+    margin-left: 10px;
 }
 
 .campaigns-home {
@@ -26,6 +27,7 @@
     column-gap: 1em;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    padding: 1em 0 1em 10px;
 }
 
 .campaigns-home::-webkit-scrollbar {
@@ -35,4 +37,10 @@
 .show-more-campaigns-home {
     font-size: .75em;
     float: right;
+}
+
+@media screen and (max-width: 992px) {
+    .campaigns-home {
+        padding-left: 1em;
+    }
 }

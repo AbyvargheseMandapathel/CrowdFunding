@@ -2,12 +2,11 @@
 export const connectAccount = async () => {
     if(!window.ethereum) {
         alert("Install Metamask Extension")
-        return;
+        return null;
     }
     
     try {
         let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        console.warn("success")
         return accounts[0];
     } catch (err) {
         console.warn("error")
