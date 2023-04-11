@@ -11,7 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 // helper functions
 import { convertToTimestamp } from '../../helpers/helper'
-import { pinataSaveImage } from '../../helpers/web3Storage'
+import { pinataSaveImage } from '../../helpers/pinataIPFS'
 
 const categoryOptions = [
     { value: 'Education', label: 'Education' },

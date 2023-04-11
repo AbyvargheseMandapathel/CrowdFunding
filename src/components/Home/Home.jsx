@@ -34,7 +34,6 @@ const Home = () => {
 
     return (
         <section className="home-container">
-
             <div className="campaigns-home-container">
                 <h1 className='heading-campaign-type'>New Campaigns</h1>
                 <div className="campaigns-home">
