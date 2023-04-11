@@ -20,6 +20,7 @@ import RequestsPage from './pages/RequestsPage';
 import HomePage from './pages/HomePage';
 import CampaignsPage from './pages/CampaignsPage';
 import ProfilePage from './pages/ProfilePage';
+import CampaignPage from './campaign-page';
 
 // examples
 import Main from './components/Main';
@@ -104,6 +105,7 @@ function App() {
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route exact path='/campaign-page' element={<CampaignPage />} />
           <Route path='/main' element={<Main />} />
         </Routes>
       </AccountProvider>
