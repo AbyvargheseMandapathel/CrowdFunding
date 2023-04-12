@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'
 import MyCampaigns from '../components/MyCampaigns/MyCampaigns'
 import Footer from '../components/Footer/Footer'
 import Loader from '../components/Loader/Loader'
+import Profile from '../components/Profile/Profile'
 
 // contexts
 import { AccountContext } from '../context/AccountContext'
@@ -24,13 +25,14 @@ const ProfilePage = () => {
     }, LOAD_TIME)
   }, []);
 
-  if (account === '' || account === undefined)
-    return <Navigate to="/login" />
+  // if (account === '' || account === undefined)
+  //   return <Navigate to="/login" />
 
 
   return (
     isLoad ?
       <>
+        <Profile />
         <MyCampaigns />
         <Footer />
       </>

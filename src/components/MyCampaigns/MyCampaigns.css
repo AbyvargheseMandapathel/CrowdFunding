@@ -14,8 +14,15 @@
     justify-content: center;
     align-items: center;
     column-gap: 2em;
-    position: relative;
+    position: sticky;
+    top: var(--nav-h);
     user-select: none;
+    z-index: 10;
+}
+
+.sticky {
+    background: var(--bg2);
+    color: var(--text);
 }
 
 .campaign-tab-header p {

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import './MyCampaigns.css'
 
 // icons
@@ -13,10 +13,26 @@ import { ContractWeb3Context } from '../../context/ContractWeb3Context'
 
 const MyCampaigns = () => {
     const { contract } = useContext(ContractWeb3Context);
+    const tabHeaderRef = useRef(null);
 
     const [tabIndex, setTabIndex] = useState(0);
     const [activeCampaigns, setActiveCampaigns] = useState([]);
     const [allCampaigns, setAllCampaigns] = useState([]);
+
+    useEffect(() => {
+        function handleScroll() {
+            if(tabHeaderRef.current.offsetTop >= 1) 
+                tabHeaderRef.current.classList.add('sticky')
+            else 
+                tabHeaderRef.current.classList.remove('sticky')
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return ()=>window.removeEventListener('scroll', handleScroll);
+    }, [])
+
+  
 
     async function getMyCampaigns() {
         try {
@@ -31,9 +47,10 @@ const MyCampaigns = () => {
 
     contract && getMyCampaigns();
 
+
     return (
         <section className='my-campaigns-container'>
-            <div className="campaign-tab-header">
+            <div className="campaign-tab-header" ref={tabHeaderRef}>
                 <p
                     onClick={() => setTabIndex(0)}
                     style={{ color: tabIndex === 0 ? 'var(--primary)' : 'var(--text)' }}
@@ -56,7 +73,7 @@ const MyCampaigns = () => {
             </div>
             {
                 tabIndex === 0 && allCampaigns.length > 0 &&
-                <TabBody campaigns={allCampaigns} />
+                    <TabBody campaigns={allCampaigns} />
             }
 
             {

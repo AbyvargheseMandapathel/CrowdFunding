@@ -5,6 +5,9 @@ import './NavBar.css'
 // components
 import Switch from '../Switch/Switch'
 
+// constants
+import { NAVOPTIONS } from '../../helpers/constants'
+
 // helpers
 import { connectAccount } from '../../helpers/helper'
 
@@ -21,14 +24,6 @@ import { FaUserAlt } from 'react-icons/fa'
 import { RiMenu2Line } from 'react-icons/ri'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
-
-// navigation links
-const navOptions = [
-    { opt: 'home', path: '/' },
-    { opt: 'create', path: '/createCampaign' },
-    { opt: 'campaigns', path: '/campaigns' },
-    { opt: 'requests', path: '/requests' },
-];
 
 const NavBar = () => {
     const [theme, setTheme] = useState('light');
@@ -100,7 +95,7 @@ const NavBar = () => {
 
                         <ul className="sidebar-ul">
                             {
-                                navOptions.map(({ opt, path }, index) => {
+                                NAVOPTIONS.map(({ opt, path }, index) => {
                                     return (
                                         <NavLink
                                             to={path}
@@ -143,7 +138,7 @@ const NavBar = () => {
 
             <div className="right-nav">
                 {
-                    navOptions.map(({ opt, path }, index) => {
+                    NAVOPTIONS.map(({ opt, path }, index) => {
                         return (
                             <NavLink
                                 to={path}

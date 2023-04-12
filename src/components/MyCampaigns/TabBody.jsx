@@ -12,6 +12,10 @@ const TabBody = ({ campaigns }) => {
         }, 700)
     })
 
+    useEffect(() => {
+        window.scrollTo(0, 700)
+    }, [])
+
     return (
         <div className="tab-body">
             {

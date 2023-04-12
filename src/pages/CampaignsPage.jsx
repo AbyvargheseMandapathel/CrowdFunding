@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import './styles.css'
 
 //components
 import Campaigns from '../components/Campaigns/Campaigns'
@@ -34,10 +35,19 @@ const CampaignsPage = () => {
         filteredList = campaigns.filter(campaign => campaign.category === category);
 
 
+    console.warn(filteredList.length)
+
     return (
         isLoad ?
             <>
-                <Campaigns campaigns={filteredList} />
+                {
+                    filteredList.length > 1 ?
+                        <Campaigns campaigns={filteredList} />
+                        :
+                        <div className="no-campaigns">
+                            <h1>No Campaigns Found!!!</h1>
+                        </div>
+                }
                 <Footer />
             </>
             :

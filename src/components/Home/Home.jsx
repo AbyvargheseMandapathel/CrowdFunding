@@ -15,7 +15,7 @@ import { LINKS } from '../../helpers/constants'
 const Home = () => {
     const { contract } = useContext(ContractWeb3Context);
     const { campaigns } = useContext(CampaignsContext);
-    console.warn(campaigns)
+
     
     const [eduCampaigns, setEduCampaigns] = useState([]);
     const [medCampaigns, setMedicalCampaigns] = useState([]);
@@ -44,7 +44,7 @@ const Home = () => {
                     <CampaignCard campaign={campaigns[campaigns.length - 2]} />
                 </div>
                 <span className='show-more-campaigns-home'>
-                    <Link to={LINKS.all}>Show More</Link>
+                    <Link to={LINKS[0].path}>Show More</Link>
                 </span>
             </div>
 
@@ -60,7 +60,7 @@ const Home = () => {
                         <CampaignCard campaign={eduCampaigns[4]} />
                     </div>
                     <span className='show-more-campaigns-home'>
-                        <Link to={LINKS.education}>Show More</Link>
+                        <Link to={LINKS[2].path}>Show More</Link>
                     </span>
                 </div>
             }
@@ -77,7 +77,7 @@ const Home = () => {
                         <CampaignCard campaign={medCampaigns[4]} />
                     </div>
                     <span className='show-more-campaigns-home'>
-                        <Link to={LINKS.medical}>Show More</Link>
+                        <Link to={LINKS[1].path}>Show More</Link>
                     </span>
                 </div>
             }

@@ -5,13 +5,8 @@ import './App.css';
 import Etherfund from './contracts/Etherfund.json'
 
 
-
-// constants
-// import { LOAD_TIME } from './helpers/constants';
-
 // components
 import NavBar from './components/NavBar/NavBar';
-// import Loader from './components/Loader/Loader';
 import Login from './components/Login/Login';
 
 // pages
@@ -20,6 +15,7 @@ import RequestsPage from './pages/RequestsPage';
 import HomePage from './pages/HomePage';
 import CampaignsPage from './pages/CampaignsPage';
 import ProfilePage from './pages/ProfilePage';
+import CategoriesPage from './pages/CategoriesPage';
 
 // examples
 import Main from './components/Main';
@@ -99,8 +95,9 @@ function App() {
         <Routes>
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/login' element={<Login />} />
-          <Route path='/campaigns/:category' element={<CampaignsPage />} />
           <Route path='/campaign/:id' element={<Main />} />
+          <Route exact path='/category' element={<CategoriesPage />} />
+          <Route path='/category/:category' element={<CampaignsPage />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
           <Route path='/profile' element={<ProfilePage />} />

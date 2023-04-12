@@ -1,0 +1,190 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    color: var(--text);
+}
+
+.left {
+    font-size: 20px;
+    float: left;
+    margin-top: 369px;
+    margin-left: 200px;
+    font-weight: bold;
+}
+
+.access {
+    font-size: 1.25em;
+}
+
+.text {
+    line-height: 40%;
+    font-weight: bold;
+    float: left;
+    margin-top: 369px;
+    margin-left: 200px;
+}
+
+.crowdfunding {
+    text-align: center;
+    font-size: 25px;
+}
+
+.good {
+    float: right;
+    font-size: 20px;
+}
+
+.fund {
+    font-weight: bold;
+    line-height: 40%;
+    float: left;
+    margin-top: 369px;
+    margin-left: 200px;
+    font-size: 20px;
+}
+
+.campaign {
+    text-align: center;
+    font-size: 25px;
+}
+
+.active {
+    float: right;
+    font-size: 20px;
+}
+
+.material-symbols-outlined {
+    font-size: 40px !important;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .left {
+
+        float: none;
+        margin-top: -167px;
+        margin-left: 0px;
+        margin-bottom: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    .access {
+        font-weight: 500;
+        font-size: 20px;
+        color: rgba(0, 0, 0, 0.75);
+        display: inline;
+    }
+
+    .text {
+        float: left;
+        margin-top: 369px;
+        margin-left: 200px;
+    }
+
+    .crowdfunding {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .good {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .fund {
+        line-height: 300%;
+        float: left;
+        margin-top: 369px;
+        margin-left: 200px;
+    }
+
+    .campaign {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .active {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 567px) {
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+
+
+    }
+
+    .left {
+        /* BetterFund Crowdfunding */
+
+        float: none;
+        margin-top: -167px;
+        margin-left: auto;
+        margin-bottom: auto;
+        margin-right: auto;
+        width: 50%;
+
+    }
+
+    .access {
+        font-weight: 500;
+        font-size: 16px;
+        display: inline;
+        text-align: justify;
+    }
+
+    .text {
+        float: left;
+        margin-top: 369px;
+        margin-left: 200px;
+    }
+
+    .crowdfunding {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .good {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .fund {
+        line-height: 300%;
+        float: left;
+        margin-top: 369px;
+        margin-left: 200px;
+    }
+
+    .campaign {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .active {
+        float: right;
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .better {
+        font-weight: 600;
+        font-size: 35px;
+    }
+}

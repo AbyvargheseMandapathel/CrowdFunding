@@ -1,10 +1,27 @@
 export const LOAD_TIME = 1500;
 export const PINATA_FILE_URI = 'https://gateway.pinata.cloud/ipfs/';
 
-export const LINKS = {
-    all: '/campaigns/All',
-    medical: '/campaigns/Medical',
-    education: '/campaigns/Education',
-}
+// export const LINKS = {
+//     all: { opt: 'All', path: '/category/All' },
+//     medical: { opt: 'Medical', path: '/category/Medical' },
+//     education: { opt: 'Education', path: '/category/Education' },
+//     business: { opt: 'Business', path: '/category/Business' },
+//     insurance: { opt: 'Insurance', path: '/category/Insurance' },
+//     other: { opt: 'Other', path: '/category/Other' },
+// }
 
-export const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzZmRmOTk0Zi1jNTcxLTRhZjgtYTVlYi0yNjBjZDBmZDIwYWQiLCJlbWFpbCI6InNhbmRodV9iMTkxMTNjc0BjZS1rZ3Iub3JnIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6IjVhZmNkOWNmZDAyM2NmZjg0NWNmIiwic2NvcGVkS2V5U2VjcmV0IjoiMzE4MjllOWYzMmYxNTI4ZGJhN2I2NGM1NjIzNjk0OGQ5NWM0YWVkMDVmNGQ4NjFkNGQzN2VlOWU4ZWMzZjAwOSIsImlhdCI6MTY4MTA1NzkzOH0.mMLl11ZFCI4Cle5IJkHkzxJxeceasOaIeGLQG3B6XXI'
+export const NAVOPTIONS = [
+    { opt: 'home', path: '/' },
+    { opt: 'create', path: '/createCampaign' },
+    { opt: 'category', path: '/category' },
+    { opt: 'requests', path: '/requests' },
+];
+
+export const LINKS = [
+    { opt: 'All', path: '/category/All' },
+    { opt: 'Medical', path: '/category/Medical' },
+    { opt: 'Education', path: '/category/Education' },
+    { opt: 'Business', path: '/category/Business' },
+    { opt: 'Insurance', path: '/category/Insurance' },
+    { opt: 'Others', path: '/category/Others' },
+]
