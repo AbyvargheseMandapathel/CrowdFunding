@@ -16,9 +16,11 @@ const ResponsiveProgressBar = ({ percentage }) => {
         margin='5px' 
         isLabelVisible 
         transition='2s ease-in'
-        className='progress-bar' // add className
+        className='progress-bar'
       />
-      <div className="eth-text">5 ETH</div> 
+      <div className="eth-text">5 ETH</div>
+      <div className="eth-collected">3 ETH collected</div>
+      <div className="eth-needed">2 ETH Needed</div>
     </div>
   );
 };

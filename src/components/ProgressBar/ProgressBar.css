@@ -5,10 +5,15 @@
 
 .progress-bar-container {
   position: relative;
-  
+  width: 90%;
+  margin: 0;
+  padding: 0;
 }
 
 .progress-bar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   margin-right: 10px;
 }
 
@@ -21,15 +26,18 @@
   font-weight: bold;
 }
 
-.progress-bar-container {
-  position: relative;
-  width: 90%;
-  margin: 0;
-  padding: 0;
+.eth-collected {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.progress-bar {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+.eth-needed {
+  position: absolute;
+  bottom: -25px;
+  right: 0;
+  font-size: 14px;
+  font-weight: bold;
 }

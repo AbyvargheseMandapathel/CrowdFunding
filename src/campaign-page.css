@@ -50,7 +50,7 @@
   }
   
   .buttons {
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     gap: 10px;
   }
@@ -98,7 +98,8 @@
     }
 
     .buttons {
-        margin-top: 10px;
+        margin-top: 40px;
+        align-items: center;
     }
 }
 
