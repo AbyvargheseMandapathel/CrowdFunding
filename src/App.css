@@ -32,9 +32,10 @@
   --nav-h: 4em;
 
   --scroll-thumb: #dedada;
-
+  --yellow : #FFFF00;
   --black: #000;
   --white: #fff;
+  --grey: #808080;
 }
 
 :root#dark {

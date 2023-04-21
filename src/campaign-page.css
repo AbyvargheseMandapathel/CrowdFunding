@@ -40,7 +40,7 @@
   }
   
   .category {
-    color: gray;
+    color: var(--grey);
     font-size: 14px;
     margin: 0;
   }
@@ -56,8 +56,8 @@
   }
   
   .contribute-now {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--secondary);
+    color: var(--black);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -68,10 +68,10 @@
   }
   
   .chat-now {
-    background-color: #008CBA;
-    color: white;
+    background-color: var(--white);
+    color: var(--secondary);
     padding: 10px 20px;
-    border: none;
+    border-color: var(--yellow);
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
