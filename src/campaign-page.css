@@ -49,10 +49,12 @@
     margin-top: 10px;
   }
   
-  .buttons {
+  .product-details .buttons {
     margin-top: 40px;
     display: flex;
     gap: 10px;
+    justify-content: center !important;
+
   }
   
   .contribute-now {
@@ -99,7 +101,9 @@
 
     .buttons {
         margin-top: 40px;
-        align-items: center;
+       justify-content: center !important;
+        
+
     }
 }
 
@@ -123,6 +127,14 @@
     .description {
       width: 100%;
     }
+    .product-details .buttons {
+        margin-top: 40px;
+        display: flex;
+        gap: 10px;
+        justify-content: center !important;
+    
+      }
+   
   }
   
   
