@@ -103,7 +103,7 @@
     font-size: 14px;
     letter-spacing: .5px;
     border-radius: 5px;
-    border: 1px solid var(--text-variant);
+    border: 1px solid var(--primary);
 }
 
 .inputs:valid {

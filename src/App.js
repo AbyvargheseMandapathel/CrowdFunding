@@ -16,6 +16,7 @@ import HomePage from './pages/HomePage';
 import CampaignsPage from './pages/CampaignsPage';
 import ProfilePage from './pages/ProfilePage';
 import CategoriesPage from './pages/CategoriesPage';
+import MyCampaignDetailsPage from './pages/MyCampaignDetailsPage'
 
 // examples
 import Main from './components/Main';
@@ -42,7 +43,8 @@ function App() {
 
   // connect to smart contract while loading
   useEffect(() => {
-    const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545"); // rpc server url of ganache
+    // const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545"); // rpc server url of ganache
+    const provider = window.ethereum;
     async function template() {
       const web3Instance = new Web3(provider);
       /*
@@ -101,6 +103,7 @@ function App() {
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
           <Route path='/requests' element={<RequestsPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/mycampaign/:id' element={<MyCampaignDetailsPage />} />
           <Route path='/main' element={<Main />} />
         </Routes>
       </AccountProvider>

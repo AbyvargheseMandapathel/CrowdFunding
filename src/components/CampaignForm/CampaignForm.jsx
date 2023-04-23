@@ -16,7 +16,10 @@ import { pinataSaveImage } from '../../helpers/pinataIPFS'
 const categoryOptions = [
     { value: 'Education', label: 'Education' },
     { value: 'Medical', label: 'Medical' },
-    { value: 'Business', label: 'Business' }
+    { value: 'Business', label: 'Business' },
+    { value: 'Insurance', label: 'Insurance' },
+    { value: 'Arts', label: 'Arts' },
+    { value: 'Others', label: 'Others' },
 ]
 
 const CampaignForm = ({ account, contract, web3 }) => {
@@ -40,9 +43,9 @@ const CampaignForm = ({ account, contract, web3 }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setCreateBtnVisibility(false);
-        // let error = validateInputs();
+        let error = validateInputs();
 
-        // if (error) return
+        if (error) return
 
         /*
             save image on ipfs and set 'image' as url
@@ -203,6 +206,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             type="text"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            required={true}
                         />
                     </div>
 
@@ -223,6 +227,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             type="number"
                             value={amountRequired}
                             onChange={(e) => setAmountRequired(e.target.value)}
+                            required={true}
                         />
                     </div>
 
@@ -234,6 +239,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             rows="10"
                             onChange={(e) => setDescription(e.target.value)}
                             value={description}
+                            required={true}
                         >
                         </textarea>
                     </div>
@@ -247,6 +253,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             type="date"
                             value={deadline}
                             onChange={(e) => setDeadline(e.target.value)}
+                            required={true}
                         />
                     </div>
 
@@ -261,6 +268,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             onChange={(e) => {
                                 setImage(imgRef.current.files)
                             }}
+                            required={true}
                         />
                     </div>
 

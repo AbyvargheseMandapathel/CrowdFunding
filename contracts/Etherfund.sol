@@ -245,4 +245,12 @@ contract Etherfund {
     {
         return campaigns[_campaignId];
     }
+
+    function getCampaignMoreDetails(uint _campaignId) public view returns(CampaignMoreDetails memory) {
+        return campaignMoreDetails[_campaignId];
+    }
+
+    function getWithdrawStatus(uint _campaignId) public view returns(bool) {
+        return campaigns[_campaignId].noOfVoters > (contributors[_campaignId].length / 2);
+    }
 }

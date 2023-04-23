@@ -41,7 +41,7 @@ const CampaignsPage = () => {
         isLoad ?
             <>
                 {
-                    filteredList.length > 1 ?
+                    filteredList.length >= 1 ?
                         <Campaigns campaigns={filteredList} />
                         :
                         <div className="no-campaigns">

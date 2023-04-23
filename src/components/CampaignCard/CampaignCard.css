@@ -19,13 +19,10 @@
     background: var(--card-bg);
     cursor: pointer;
     transition: all 200ms;
-    transform: scale(1);
 }
 
 .campaign-card:hover {
     box-shadow: var(--shadow);
-    background: var(--hover-bg);
-    transform: scale(1.05);
 }
 
 .campaign-img-container {

@@ -20,7 +20,7 @@ const CampaignCard = ({campaign}) => {
         <div className="campaign-card">
             <p></p>
             <div className="campaign-img-container">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHrKEUdHqLbftyPLDuDDeXwEQAt6rVPSxAQ" alt="" />
+                <img src={campaign.imageURL} alt="" />
             </div>
 
             <div className="campaign-card-details">
