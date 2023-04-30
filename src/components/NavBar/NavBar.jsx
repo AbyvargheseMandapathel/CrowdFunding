@@ -71,7 +71,7 @@ const NavBar = () => {
             navigate('/')
         setTimeout(() => {
             setAccount(acc);
-            navigate(-2)
+            navigate(-1)
         }, 1500)
     }
 

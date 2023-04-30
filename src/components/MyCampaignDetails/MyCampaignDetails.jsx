@@ -1,40 +1,42 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './MyCampaignDetails.css'
 
 // component
-// import ResponsiveProgressBar from '../ResponsiveProgressBar/ResponsiveProgressBar'
+import ResponsiveProgressBar from '../ResponsiveProgressBar/ResponsiveProgressBar'
 
-// helper
+
+// helpers
 import { timestampToDate } from '../../helpers/helper'
 
-const MyCampaignDetails = ({details, moreDetails, withdrawStatus}) => {
+
+const MyCampaignDetails = ({ details, moreDetails, withdrawStatus, reqAmount, collected, requestVote }) => {
+
     return (
-        <div>
+        <div className='campaign-details-card-wrapper'>
             <div className="product-card">
                 <img src={details.imageURL} alt="Campaign" />
                 <div className="product-details">
                     <h2>{details.title}</h2>
                     <p className="category">Category : {details.category}</p>
                     <p className="description">{details.desc}</p>
-                    {/* {collectedAmountPercentage >= 100 && <p className="goal-achieved-msg">Goal achieved, waiting for votes.</p>} */}
+                    {collected >= reqAmount && <p className="goal-achieved-msg">Goal achieved!</p>}
 
                     <p className="contribute-before">Contribute before {timestampToDate(details.deadline)}</p>
-                    <p className="contribute-before">Amount Needed :  <span style={{fontWeight: '600', margin: '1em 0'}}>2 ETH</span></p>
 
-                    {/* <ResponsiveProgressBar reqAmount={10} percentage={40} /> */}
+                    <ResponsiveProgressBar reqAmount={reqAmount} collected={collected}/>
 
                     <div className="buttons">
                         {
                             moreDetails.isRequestedToVote === false && moreDetails.isGoalAchieved &&
-                            <button className="contribute-now" onClick={() => alert('clicked')}>Request Vote</button>
+                            <button className="contribute-now" onClick={requestVote}>Request Vote</button>
                         }
                         {
-                            moreDetails.isRequestedToVote && moreDetails.isGoalAchieved && withdrawStatus!==true && 
-                            <p className='text-p btn-text' style={{marginTop: '1em'}}>Requested to votes.</p>
+                            moreDetails.isRequestedToVote && moreDetails.isGoalAchieved && withdrawStatus !== true &&
+                            <p className='text-p btn-text' style={{ marginTop: '1em' }}>Waiting for votes!</p>
                         }
 
                         {
-                            withdrawStatus===true && 
+                            withdrawStatus === true &&
                             <button className="contribute-now" onClick={() => alert('withdrawed')}>Withdraw</button>
                         }
                     </div>

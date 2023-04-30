@@ -1,4 +1,3 @@
-
 export const connectAccount = async () => {
     if (!window.ethereum) {
         alert("Install Metamask Extension")

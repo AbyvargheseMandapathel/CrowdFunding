@@ -6,6 +6,8 @@ contract Etherfund {
     uint256 minimuContribution = 0.5 ether; // minimum value for contribution 
     uint256 totalCampaigns = 0; // for creating id for campaigns (increments after inserting each campaign to array)
 
+     event CampaignRequested(uint256 campaignId); // event for request
+
     // Campaign structure to save data of campaign
     struct Campaign {
         uint256 id;
@@ -144,6 +146,8 @@ contract Etherfund {
             campaignMoreDetails[_campaignId].isRequestedToVote = true,
             "Already requested"
         );
+
+        emit CampaignRequested(_campaignId);
 
         Contributor[] storage contributorsList = contributors[_campaignId]; // get all contributors
         for (uint256 i = 0; i < contributorsList.length; i++) {

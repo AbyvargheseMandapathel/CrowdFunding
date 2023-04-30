@@ -17,6 +17,7 @@ import CampaignsPage from './pages/CampaignsPage';
 import ProfilePage from './pages/ProfilePage';
 import CategoriesPage from './pages/CategoriesPage';
 import MyCampaignDetailsPage from './pages/MyCampaignDetailsPage'
+import CampaignDetailsUserPage from './pages/CampaignDetailsUserPage';
 
 // examples
 import Main from './components/Main';
@@ -58,7 +59,9 @@ function App() {
       const networkId = await web3Instance.eth.net.getId();
 
       // deployedNetwork.address is contract address of Etherfund
-      const deployedNetwork = Etherfund.networks[networkId];
+      // const deployedNetwork = Etherfund.networks[networkId];
+      const deployedNetwork = Etherfund.networks[5777];
+      console.warn(networkId)
 
       // instance of smart contract to make interactions
       const contractInstance = new web3Instance.eth.Contract(Etherfund.abi, deployedNetwork.address);
@@ -97,7 +100,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<HomePage />} />
           <Route exact path='/login' element={<Login />} />
-          <Route path='/campaign/:id' element={<Main />} />
+          <Route path='/campaign/:id' element={<CampaignDetailsUserPage />} />
           <Route exact path='/category' element={<CategoriesPage />} />
           <Route path='/category/:category' element={<CampaignsPage />} />
           <Route path='/createCampaign' element={<CreateCampaignPage />} />
