@@ -58,8 +58,8 @@ const MyCampaignDetailsPage = () => {
   }
 
   async function requestVote() {
-    // if(!account || account==="")
-    //   return
+    if(!account || account==="")
+      return
       
       try {
        await contract.methods.requestVote(parseInt(id)).send({

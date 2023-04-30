@@ -3,10 +3,11 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Etherfund {
-    uint256 minimuContribution = 0.5 ether; // minimum value for contribution 
+    uint256 minimuContribution = 0.5 ether; // minimum value for contribution
     uint256 totalCampaigns = 0; // for creating id for campaigns (increments after inserting each campaign to array)
 
-     event CampaignRequested(uint256 campaignId); // event for request
+    // events
+    event CampaignRequested(uint256 campaignId);
 
     // Campaign structure to save data of campaign
     struct Campaign {
@@ -242,19 +243,21 @@ contract Etherfund {
     }
 
     // get details about a campaign with campaignId
-    function getCampaignDetails(uint256 _campaignId)
-        public
-        view
-        returns (Campaign memory)
-    {
+    function getCampaignDetails(
+        uint256 _campaignId
+    ) public view returns (Campaign memory) {
         return campaigns[_campaignId];
     }
 
-    function getCampaignMoreDetails(uint _campaignId) public view returns(CampaignMoreDetails memory) {
+    function getCampaignMoreDetails(
+        uint _campaignId
+    ) public view returns (CampaignMoreDetails memory) {
         return campaignMoreDetails[_campaignId];
     }
 
-    function getWithdrawStatus(uint _campaignId) public view returns(bool) {
-        return campaigns[_campaignId].noOfVoters > (contributors[_campaignId].length / 2);
+    function getWithdrawStatus(uint _campaignId) public view returns (bool) {
+        return
+            campaigns[_campaignId].noOfVoters >
+            (contributors[_campaignId].length / 2);
     }
 }
