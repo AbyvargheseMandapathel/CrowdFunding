@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './MyCampaignDetails.css'
 
 // component
@@ -29,8 +29,10 @@ const MyCampaignDetails = ({ details, moreDetails, withdrawStatus, reqAmount, co
                         {
                             moreDetails.isRequestedToVote === false && moreDetails.isGoalAchieved &&
                             <button className="contribute-now" onClick={(e) => {
-                                requestVote();
-                                e.target.innerHTML = "Waiting for votes!";
+                                e.target.innerHTML = "Requesting...";
+                                let res = requestVote();
+                                if(res)
+                                    e.target.innerHTML = "Waiting for votes!!";
                             }}>Request Vote</button>
                         }
                         {

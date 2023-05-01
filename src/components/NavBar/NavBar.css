@@ -119,6 +119,7 @@
 }
 
 .profile-icon-nav:hover {
+    font-size: 1.5em;
     background: var(--primary);
     color: var(--white);
 }
@@ -202,16 +203,18 @@
         transition: var(--transition-400);
     }
 
-    .active .sidebar-li,
-    .active .sidebar-li:hover {
-        color: var(--primary);
-        background: var(--active-link-bg);
-    }
-
     .sidebar-li:hover {
-        background: #ecca8046;
         color: var(--primary);
         color: var(--text);
+        background: var(--hover-bg);
+    }
+    
+    
+    .sidebar-ul a.active,
+    .sidebar-ul a.active .sidebar-li:hover {
+        width: 100%;
+        font-size: 16px;
+        background: #ecca8046;
     }
 
     .switch-theme-sidear {

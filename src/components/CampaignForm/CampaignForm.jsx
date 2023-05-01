@@ -72,13 +72,6 @@ const CampaignForm = ({ account, contract, web3 }) => {
        createCampaign(params);
     }
 
-    // async function saveImage() {
-    //     // console.warn(imgRef.current.files[0])
-    //    let url = await pinataSaveImage(imgRef.current.files[0]);
-    //    setImage(url);
-    // }
-
-
     async function createCampaign({ title, desc, category, url, timestamp, contributionInWei }) {
         try {
             await contract.methods.createCampaign(
@@ -283,7 +276,7 @@ const CampaignForm = ({ account, contract, web3 }) => {
                             </button>
                             :
                             <button className="submit-btn" disabled={true}>
-                                <span ref={creatingBtnTextRef}>Creating</span>
+                                <span ref={creatingBtnTextRef}>Creating...</span>
                                 {created && <span style={{ marginLeft: '5px' }}>&#10004;</span>}
                             </button>
                         }

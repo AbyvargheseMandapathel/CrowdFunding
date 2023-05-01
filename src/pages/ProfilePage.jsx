@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+// import { Navigate } from 'react-router-dom'
 
 // components
 import MyCampaigns from '../components/MyCampaigns/MyCampaigns'
@@ -8,13 +8,13 @@ import Loader from '../components/Loader/Loader'
 import Profile from '../components/Profile/Profile'
 
 // contexts
-import { AccountContext } from '../context/AccountContext'
+// import { AccountContext } from '../context/AccountContext'
 
 // constants
 import { LOAD_TIME } from '../helpers/constants'
 
 const ProfilePage = () => {
-  const { account } = useContext(AccountContext);
+  // const { account } = useContext(AccountContext);
 
   const [isLoad, setIsLoad] = useState(false);
 

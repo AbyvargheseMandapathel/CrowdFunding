@@ -48,7 +48,7 @@ const CampaignDetailsUser = ({ details, moreDetails, reqAmount, collected, id })
     <>
       <div className='campaign-details-card-wrapper'>
         <div className="product-card">
-          <img src={details.imageURL} alt="Campaign Image" />
+          <img src={details.imageURL} alt={details.title} />
           <div className="product-details">
             <h2>{details.title}</h2>
             <p className="category">Category : {details.category}</p>

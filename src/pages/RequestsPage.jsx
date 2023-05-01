@@ -20,6 +20,7 @@ const RequestsPage = () => {
     const [requests, setRequests] = useState([]);
 
     useEffect(() => {
+        document.querySelector('title').innerHTML = "Etherfund - Request"
         contract && getRequests();
     }, [])
 
@@ -27,7 +28,6 @@ const RequestsPage = () => {
         try {
             let reqLists = await contract.methods.getMyRequests().call();
             setRequests(reqLists);
-            console.warn(reqLists);
         } catch (err) {
             alert("Error occured while fetching data!")
             console.warn(err);
@@ -39,10 +39,10 @@ const RequestsPage = () => {
     async function voteForCampaign(campaignId) {
         try {
             await contract.methods.voteForCampaign(parseInt(campaignId))
-                .send({
-                    from: account,
-                    gas: 200000
-                });
+            .send({
+                from: account,
+                gas: 20000
+            });
             return true
         } catch (err) {
             alert("Error occured while approving. Try again!")
@@ -51,8 +51,8 @@ const RequestsPage = () => {
         }
     }
 
-    // if (account === '')
-    //     navigate("/login");
+    if (account === '')
+        navigate("/login");
 
     return (
         isLoad ?

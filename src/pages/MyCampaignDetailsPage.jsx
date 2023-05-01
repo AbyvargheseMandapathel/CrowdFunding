@@ -70,9 +70,11 @@ const MyCampaignDetailsPage = () => {
         from: account,
         gas: 200000
        });
+       return true;
     } catch (err) {
       alert("Error occured while requesting");
-      console.warn(err)
+      console.warn(err);
+      return false;
     }
   }
 

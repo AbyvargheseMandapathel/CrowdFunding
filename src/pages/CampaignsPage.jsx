@@ -34,9 +34,6 @@ const CampaignsPage = () => {
     else
         filteredList = campaigns.filter(campaign => campaign.category === category);
 
-
-    console.warn(filteredList.length)
-
     return (
         isLoad ?
             <>

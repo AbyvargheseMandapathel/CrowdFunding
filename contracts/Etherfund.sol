@@ -180,6 +180,10 @@ contract Etherfund {
                 requestList[i].campaignId == campaignId &&
                 requestList[i].isVoted == false
             ) {
+                require(
+                    block.timestamp <= campaigns[campaignId].deadline,
+                    "Can't vote, deadline passed."
+                );
                 requestList[i].isVoted = true;
                 campaigns[campaignId].noOfVoters++;
             }

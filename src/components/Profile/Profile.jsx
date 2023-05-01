@@ -16,7 +16,7 @@ const Profile = () => {
 
             <div className="fund">
                 <p className="campaign">2</p>
-                <p className="active"><br />Total Campaigns</p>
+                <p className="active-campaigns"><br />Total Campaigns</p>
             </div>
         </div>
 

@@ -9,36 +9,36 @@ import {timestampToDate, weiToEther} from '../../helpers/helper'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 import { BiShowAlt } from 'react-icons/bi'
 
-const allRequests = [
-    {
-        campaignId: 0,
-        fundRaiser: '6jhjhg89434798hkshfsd78y87w',
-        amount: 5,
-        deadline: 1680254530,
-        isVoted: false
-    },
-    {
-        campaignId: 1,
-        fundRaiser: 'jh8764324knsdf9847q39elnkd',
-        amount: 15,
-        deadline: 1680254530,
-        isVoted: false
-    },
-    {
-        campaignId: 2,
-        fundRaiser: 'kdjaslkjf987648234fr5',
-        amount: 35,
-        deadline: 1680254530,
-        isVoted: true
-    },
-    {
-        campaignId: 3,
-        fundRaiser: '87878766hgvhguygsawnkjhd8787',
-        amount: 8,
-        deadline: 1680254530,
-        isVoted: false
-    },
-]
+// const allRequests = [
+//     {
+//         campaignId: 0,
+//         fundRaiser: '6jhjhg89434798hkshfsd78y87w',
+//         amount: 5,
+//         deadline: 1680254530,
+//         isVoted: false
+//     },
+//     {
+//         campaignId: 1,
+//         fundRaiser: 'jh8764324knsdf9847q39elnkd',
+//         amount: 15,
+//         deadline: 1680254530,
+//         isVoted: false
+//     },
+//     {
+//         campaignId: 2,
+//         fundRaiser: 'kdjaslkjf987648234fr5',
+//         amount: 35,
+//         deadline: 1680254530,
+//         isVoted: true
+//     },
+//     {
+//         campaignId: 3,
+//         fundRaiser: '87878766hgvhguygsawnkjhd8787',
+//         amount: 8,
+//         deadline: 1680254530,
+//         isVoted: false
+//     },
+// ]
 
 
 const Requests = ({ requests, web3, voteForCampaign }) => {
@@ -46,8 +46,8 @@ const Requests = ({ requests, web3, voteForCampaign }) => {
     const [requestList, setRequestList] = useState(requests);
 
     async function approve(campaignId) {
-        // const approve = window.confirm("Would you like to confirm your vote for this campaign?")
-        // if (!approve) return
+        const approve = window.confirm("Would you like to confirm your vote for this campaign?")
+        if (!approve) return
 
         const res = await voteForCampaign(campaignId);
         if(!res){

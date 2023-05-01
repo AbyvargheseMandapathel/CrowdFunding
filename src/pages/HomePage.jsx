@@ -23,8 +23,7 @@ const HomePage = () => {
     return (
         isLoad?
         <>
-            <h1><Link to="/campaign/0">campaign</Link></h1>
-            <h1><Link to="/mycampaign/0">my campaign : 0</Link></h1>
+            <h1><Link to="/mycampaign/3">my campaign : 0</Link></h1>
             <h1><Link to="/mycampaign/2">my campaign : 2</Link></h1>
             <Home />
             <Footer />
