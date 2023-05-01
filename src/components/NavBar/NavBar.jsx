@@ -29,19 +29,23 @@ const NavBar = () => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
-
     const navigate = useNavigate();
 
-    // get current theme
     useEffect(() => {
-        let localTheme = localStorage.getItem('theme');
-        if (localTheme === 'dark') {
-            document.querySelector('html').id = 'dark';
-            setTheme('dark');
-        }
-    }, [])
+        checkLogin();
+    }, []);
 
-    // change theme
+    const checkLogin = () => {
+        let localAccount = localStorage.getItem('account');
+        if (localAccount) {
+            setAccount(JSON.parse(localAccount));
+        } else {
+            if (window.location.pathname !== '/login') {
+                navigate('/login'); // Redirect the user if not logged in and not already on the login page
+            }
+        }
+    }
+
     const changeTheme = () => {
         let html = document.querySelector('html');
         if (html.id === 'light') {
@@ -55,7 +59,6 @@ const NavBar = () => {
         }
     }
 
-    // open and close side navigation
     const slideDrawer = (pos) => {
         let drawer = document.querySelector('.sidebar-drawer');
         drawerVisibility ? drawer.style.opacity = '0' : drawer.style.opacity = '1'
@@ -65,15 +68,22 @@ const NavBar = () => {
 
     const connect = async () => {
         document.querySelector('.btn-nav-load').style.display = 'block';
-        document.querySelector('.btn-nav').style.background = 'var(--disabled)'
+        document.querySelector('.btn-nav').style.background = 'var(--disabled)';
         let acc = await connectAccount();
-        if(!account)
-            navigate('/')
         setTimeout(() => {
             setAccount(acc);
-            navigate(-1)
-        }, 1500)
+            localStorage.setItem('account', JSON.stringify(acc));
+            navigate('/'); // Redirect to index page after successful login
+        }, 1500);
+    };
+
+    const handleLogout = () => {
+        setAccount(null);
+        localStorage.removeItem('account');
+        navigate('/login'); // navigate to the login page
     }
+
+    
 
     return (
         <nav className='nav-bar'>
@@ -150,21 +160,34 @@ const NavBar = () => {
                             </NavLink>)
                     })
                 }
-                {
-                    account ?
-                        <NavLink
-                            to='profile'
-                            className='nav-links profile-icon-nav'
-                            id='profile'
-                        >
-                            <FaUserAlt />
-                        </NavLink>
-                        :
-                        <button className='btn-nav' onClick={connect}>
-                            <span className='btn-nav-load'><AiOutlineLoading3Quarters /></span>
-                            Connect
-                        </button>
-                }
+                  {
+    account ?
+        <>
+            <NavLink
+                to='profile'
+                className='nav-links profile-icon-nav'
+                id='profile'
+            >
+                <FaUserAlt />
+            </NavLink>
+            <button
+                className='btn-nav'
+                onClick={() => {
+                    setAccount(null);
+                    localStorage.removeItem('account');
+                    navigate('/login'); // navigate to the login page
+                }}
+                >
+                Logout
+                </button>
+
+        </>
+        :
+        <button className='btn-nav' onClick={connect}>
+            <span className='btn-nav-load'><AiOutlineLoading3Quarters /></span>
+            Connect
+        </button>
+}
                 
                 <Switch className="nav-switch" onChange={changeTheme} checked={theme === 'dark' && true} />
                 

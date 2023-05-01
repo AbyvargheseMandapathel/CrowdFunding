@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Select from 'react-select'
 import './CampaignForm.css'
@@ -91,17 +91,18 @@ const CampaignForm = ({ account, contract, web3 }) => {
             ).send({
                 from: account,
                 gas: '1000000' // max gas to use
-            })
+            });
             creatingBtnTextRef.current.textContent = "Created";
             setCreated(true);
-
-            setTimeout(() => {
-                navigate("/")
-            }, 1500)
+    
+            // Navigate to home page and refresh
+            navigate("/", { replace: true });
+            window.location.reload();
         } catch (err) {
             console.warn(err)
         } 
     }
+    
 
     const validateInputs = () => {
         let error

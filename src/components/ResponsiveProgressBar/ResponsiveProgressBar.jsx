@@ -15,7 +15,7 @@ const ResponsiveProgressBar = ({ reqAmount, collected }) => {
           label={`${percentageCollected}% funded`}
           bgColor='var(--secondary)' 
           baseBgColor='var(--white)' 
-          height='15px' 
+          height='20px' 
           width='100% !important'
           margin='5px' 
           labelStyle={{ color: 'var(--black) !important' }}

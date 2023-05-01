@@ -8,6 +8,10 @@ contract Etherfund {
 
     // events
     event CampaignRequested(uint256 campaignId);
+    event CampaignCreated(uint campaignId);
+    event ContributionAdded(uint campaignId);
+    event Voted(uint campaignId);
+    event WithdrawalSuccess(uint campaignId);
 
     // Campaign structure to save data of campaign
     struct Campaign {
@@ -87,6 +91,7 @@ contract Etherfund {
         );
 
         campaignMoreDetails.push(newCampaignMoreDetails);
+        emit CampaignCreated(totalCampaigns);
 
         totalCampaigns++; // increment no of campaigns
     }
@@ -130,6 +135,8 @@ contract Etherfund {
         ) {
             campaignMoreDetails[campaignId].isGoalAchieved = true;
         }
+
+        emit ContributionAdded(campaignId);
     }
 
     // Request to vote
@@ -148,8 +155,6 @@ contract Etherfund {
             "Already requested"
         );
 
-        emit CampaignRequested(_campaignId);
-
         Contributor[] storage contributorsList = contributors[_campaignId]; // get all contributors
         for (uint256 i = 0; i < contributorsList.length; i++) {
             Request memory newRequest = Request(
@@ -163,6 +168,7 @@ contract Etherfund {
         }
 
         campaignMoreDetails[_campaignId].isRequestedToVote = true;
+        emit CampaignRequested(_campaignId);
     }
 
     // vote for a campaign
@@ -178,6 +184,8 @@ contract Etherfund {
                 campaigns[campaignId].noOfVoters++;
             }
         }
+
+        emit Voted(campaignId);
     }
 
     // withdraw after voted half of the contributors
@@ -197,6 +205,7 @@ contract Etherfund {
         );
 
         campaigns[campaignId].isCompleted = true;
+        emit WithdrawalSuccess(campaignId);
     }
 
     // get all incompleted campaigns

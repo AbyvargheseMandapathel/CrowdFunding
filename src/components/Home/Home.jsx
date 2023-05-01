@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './Home.css'
 
 // contexts
@@ -16,7 +17,6 @@ const Home = () => {
     const { contract } = useContext(ContractWeb3Context);
     const { campaigns } = useContext(CampaignsContext);
 
-    
     const [eduCampaigns, setEduCampaigns] = useState([]);
     const [medCampaigns, setMedicalCampaigns] = useState([]);
 
@@ -28,9 +28,15 @@ const Home = () => {
         setMedicalCampaigns(medicalCampaigns);
     }, []);
 
+    const navigate = useNavigate();
 
-    if (contract === '' || contract === undefined)
-        return <h1>No Contracts Available</h1>
+
+    useEffect(() => {
+        if (!contract || contract === undefined) {
+            navigate('/login');
+            //history.push('/login');
+        }
+    }, [contract, navigate]);
 
     return (
         <section className="home-container">

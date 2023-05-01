@@ -55,7 +55,11 @@ const CampaignDetailsUser = ({ details, moreDetails, reqAmount, collected, id })
             <p className="description">{details.desc}</p>
             <p className="contribute-before">Contribute before {timestampToDate(details.deadline)}</p>
             {!account && <p className="contribute-before">Please login to transfer ETH</p>}
-            {collected >= reqAmount && <p className="goal-achieved">Goal Achieved, waiting for votes.</p>}
+            {collected >= reqAmount && (
+              account && details.creator === account ?
+                <button className="withdraw-now">Withdraw</button> :
+                <p className="goal-achieved">Goal Achieved, waiting for votes.</p>
+            )}
 
             <ResponsiveProgressBar reqAmount={reqAmount} collected={collected}/>
 

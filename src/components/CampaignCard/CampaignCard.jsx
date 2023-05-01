@@ -11,10 +11,6 @@ const CampaignCard = ({campaign}) => {
     const {web3} = useContext(ContractWeb3Context);
     const navigate = useNavigate();
 
-    // const weiToEther = wei => {
-    //    return web3.utils.fromWei(wei, 'ether')
-    // }
-
     return (
         campaign &&
         <div className="campaign-card">
