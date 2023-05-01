@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate ,useLocation } from 'react-router-dom'
 import './NavBar.css'
 
 // components
@@ -30,60 +30,62 @@ const NavBar = () => {
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
     const navigate = useNavigate();
-
+    const location = useLocation();
+  
     useEffect(() => {
-        checkLogin();
-    }, []);
-
+      checkLogin();
+    }, [location]);
+  
     const checkLogin = () => {
-        let localAccount = localStorage.getItem('account');
-        if (localAccount) {
-            setAccount(JSON.parse(localAccount));
-        } else {
-            if (window.location.pathname !== '/login') {
-                navigate('/login'); // Redirect the user if not logged in and not already on the login page
-            }
-        }
-    }
-
-    const changeTheme = () => {
-        let html = document.querySelector('html');
-        if (html.id === 'light') {
-            html.id = 'dark';
-            setTheme('dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            html.id = 'light';
-            setTheme('light');
-            localStorage.setItem('theme', 'light');
-        }
-    }
-
-    const slideDrawer = (pos) => {
-        let drawer = document.querySelector('.sidebar-drawer');
-        drawerVisibility ? drawer.style.opacity = '0' : drawer.style.opacity = '1'
-        drawer.style.left = pos
-        setDrawerVisibility(!drawerVisibility)
-    }
-
-    const connect = async () => {
-        document.querySelector('.btn-nav-load').style.display = 'block';
-        document.querySelector('.btn-nav').style.background = 'var(--disabled)';
-        let acc = await connectAccount();
-        setTimeout(() => {
-            setAccount(acc);
-            localStorage.setItem('account', JSON.stringify(acc));
-            navigate('/'); // Redirect to index page after successful login
-        }, 1500);
+      if (!account && location.pathname !== '/login') {
+        navigate('/login');
+      }
     };
-
-    const handleLogout = () => {
-        setAccount(null);
-        localStorage.removeItem('account');
-        navigate('/login'); // navigate to the login page
+  
+    const changeTheme = () => {
+      let html = document.querySelector('html');
+      if (html.id === 'light') {
+        html.id = 'dark';
+        setTheme('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.id = 'light';
+        setTheme('light');
+        localStorage.setItem('theme', 'light');
+      }
     }
-
-    
+  
+    const slideDrawer = (pos) => {
+      let drawer = document.querySelector('.sidebar-drawer');
+      drawerVisibility ? drawer.style.opacity = '0' : drawer.style.opacity = '1'
+      drawer.style.left = pos
+      setDrawerVisibility(!drawerVisibility)
+    }
+  
+    const connect = async () => {
+      document.querySelector('.btn-nav-load').style.display = 'block';
+      document.querySelector('.btn-nav').style.background = 'var(--disabled)';
+      let acc = await connectAccount();
+      setTimeout(() => {
+        setAccount(acc);
+        sessionStorage.setItem('account', JSON.stringify(acc)); // store account data in sessionStorage
+        navigate('/'); // Redirect to index page after successful login
+      }, 1500);
+    };
+  
+    const handleLogout = () => {
+      setAccount(null);
+      sessionStorage.removeItem('account'); // remove account data from sessionStorage
+      navigate('/login'); // navigate to the login page
+    }
+  
+    // load user account data from sessionStorage on component mount
+    useEffect(() => {
+      const storedAccount = sessionStorage.getItem('account');
+      if (storedAccount) {
+        setAccount(JSON.parse(storedAccount));
+      }
+    }, []);
 
     return (
         <nav className='nav-bar'>
@@ -204,4 +206,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default NavBar;
