@@ -48,18 +48,14 @@ const CampaignDetailsUser = ({ details, moreDetails, reqAmount, collected, id })
     <>
       <div className='campaign-details-card-wrapper'>
         <div className="product-card">
-          <img src={details.imageURL} alt="Campaign Image" />
+          <img src={details.imageURL} alt={details.title} />
           <div className="product-details">
             <h2>{details.title}</h2>
             <p className="category">Category : {details.category}</p>
             <p className="description">{details.desc}</p>
             <p className="contribute-before">Contribute before {timestampToDate(details.deadline)}</p>
             {!account && <p className="contribute-before">Please login to transfer ETH</p>}
-            {collected >= reqAmount && (
-              account && details.creator === account ?
-                <button className="withdraw-now">Withdraw</button> :
-                <p className="goal-achieved">Goal Achieved, waiting for votes.</p>
-            )}
+            {collected >= reqAmount && <p className="goal-achieved">Goal Achieved, waiting for votes.</p>}
 
             <ResponsiveProgressBar reqAmount={reqAmount} collected={collected}/>
 

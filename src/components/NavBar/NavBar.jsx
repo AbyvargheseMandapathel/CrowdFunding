@@ -25,7 +25,7 @@ import { RiMenu2Line } from 'react-icons/ri'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 
-const NavBar = () => {
+const NavBar = ({ isLoginPage }) => {
     const [theme, setTheme] = useState('light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
@@ -74,10 +74,11 @@ const NavBar = () => {
     };
   
     const handleLogout = () => {
-      setAccount(null);
-      sessionStorage.removeItem('account'); // remove account data from sessionStorage
-      navigate('/login'); // navigate to the login page
-    }
+        setAccount(null);
+        sessionStorage.removeItem('account'); // remove account data from sessionStorage
+        localStorage.removeItem('account'); // remove account data from localStorage
+        navigate('/login'); // navigate to the login page
+      }
   
     // load user account data from sessionStorage on component mount
     useEffect(() => {
