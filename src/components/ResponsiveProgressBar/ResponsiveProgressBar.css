@@ -15,6 +15,7 @@
     margin: 0;
     padding: 0;
     margin-right: 10px;
+    text-align: center;
     animation: progress 7s ease-in-out;
     animation-fill-mode: forwards;
   }
@@ -27,6 +28,7 @@
   .progressBar-label {
     color: var(--black);
     font-weight: bold;
+    width: 100%;
   }
   
   .eth-text {

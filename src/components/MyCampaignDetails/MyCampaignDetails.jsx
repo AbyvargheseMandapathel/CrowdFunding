@@ -21,14 +21,17 @@ const MyCampaignDetails = ({ details, moreDetails, withdrawStatus, reqAmount, co
                     <p className="description">{details.desc}</p>
                     {collected >= reqAmount && <p className="goal-achieved-msg">Goal achieved!</p>}
 
-                    <p className="contribute-before">Contribute before {timestampToDate(details.deadline)}</p>
+                    <p className="contribute-before">Deadline : {timestampToDate(details.deadline)}</p>
 
-                    <ResponsiveProgressBar reqAmount={reqAmount} collected={collected}/>
+                    <ResponsiveProgressBar reqAmount={reqAmount} collected={collected} />
 
                     <div className="buttons">
                         {
                             moreDetails.isRequestedToVote === false && moreDetails.isGoalAchieved &&
-                            <button className="contribute-now" onClick={requestVote}>Request Vote</button>
+                            <button className="contribute-now" onClick={(e) => {
+                                requestVote();
+                                e.target.innerHTML = "Waiting for votes!";
+                            }}>Request Vote</button>
                         }
                         {
                             moreDetails.isRequestedToVote && moreDetails.isGoalAchieved && withdrawStatus !== true &&

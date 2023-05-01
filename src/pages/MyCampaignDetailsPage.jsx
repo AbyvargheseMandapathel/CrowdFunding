@@ -5,6 +5,7 @@ import './styles.css'
 // components
 import MyCampaignDetails from '../components/MyCampaignDetails/MyCampaignDetails';
 import Footer from '../components/Footer/Footer';
+import Loader from '../components/Loader/Loader'
 
 // contexts
 import { ContractWeb3Context } from '../context/ContractWeb3Context';
@@ -23,6 +24,7 @@ const MyCampaignDetailsPage = () => {
   const [withdrawStatus, setWithdrawStatus] = useState(false);
   const [amtReq, setAmtReq] = useState(0);
   const [collectedAmt, setCollectedAmt] = useState(0);
+  const [isLoad, setIsLoad] = useState(false);
 
   // get campaign details
   useEffect(() => {
@@ -51,6 +53,8 @@ const MyCampaignDetailsPage = () => {
       setWithdrawStatus(status);
       setAmtReq(amtReqInEth);
       setCollectedAmt(amtCollectedInEth);
+
+      setIsLoad(true);
     } catch (err) {
       alert("Error occured while fetching data")
       navigate('/')
@@ -66,7 +70,6 @@ const MyCampaignDetailsPage = () => {
         from: account,
         gas: 200000
        });
-        console.warn(typeof id)
     } catch (err) {
       alert("Error occured while requesting");
       console.warn(err)
@@ -74,6 +77,7 @@ const MyCampaignDetailsPage = () => {
   }
 
   return (
+    isLoad?
     <>
       <MyCampaignDetails
         details={campaignDetails}
@@ -85,6 +89,8 @@ const MyCampaignDetailsPage = () => {
       />
       <Footer />
     </>
+    :
+    <Loader />
   )
 }
 

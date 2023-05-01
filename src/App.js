@@ -45,7 +45,8 @@ function App() {
   // connect to smart contract while loading
   useEffect(() => {
     // const provider = new Web3.providers.HttpProvider("http://127.0.0.1:7545"); // rpc server url of ganache
-    const provider = window.ethereum;
+    // const provider = window.ethereum;
+    const provider = Web3.givenProvider || "http://127.0.0.1:7545"
     async function template() {
       const web3Instance = new Web3(provider);
       /*
@@ -59,9 +60,8 @@ function App() {
       const networkId = await web3Instance.eth.net.getId();
 
       // deployedNetwork.address is contract address of Etherfund
-      // const deployedNetwork = Etherfund.networks[networkId];
-      const deployedNetwork = Etherfund.networks[5777];
-      console.warn(networkId)
+      const deployedNetwork = Etherfund.networks[networkId];
+      // const deployedNetwork = Etherfund.networks[5777];
 
       // instance of smart contract to make interactions
       const contractInstance = new web3Instance.eth.Contract(Etherfund.abi, deployedNetwork.address);

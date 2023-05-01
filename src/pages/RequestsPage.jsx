@@ -1,35 +1,63 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 // context
 import { AccountContext } from '../context/AccountContext'
+import { ContractWeb3Context } from '../context/ContractWeb3Context'
 
 // components
 import Requests from '../components/Request/Requests'
 import Loader from '../components/Loader/Loader'
 import Footer from '../components/Footer/Footer'
 
-// constants
-import { LOAD_TIME } from '../helpers/constants'
-
 const RequestsPage = () => {
     const { account } = useContext(AccountContext);
+    const { contract, web3 } = useContext(ContractWeb3Context);
+
+    const navigate = useNavigate();
+
     const [isLoad, setIsLoad] = useState(false);
+    const [requests, setRequests] = useState([]);
 
     useEffect(() => {
-        document.querySelector('title').innerHTML = 'Etherfund - Requests'
-        setTimeout(() => {
-            setIsLoad(true)
-        }, LOAD_TIME)
-    })
+        contract && getRequests();
+    }, [])
 
-    if (account === '')
-        return <Navigate to="/login" />
+    async function getRequests() {
+        try {
+            let reqLists = await contract.methods.getMyRequests().call();
+            setRequests(reqLists);
+            console.warn(reqLists);
+        } catch (err) {
+            alert("Error occured while fetching data!")
+            console.warn(err);
+            navigate("/");
+        }
+        setIsLoad(true);
+    }
+
+    async function voteForCampaign(campaignId) {
+        try {
+            await contract.methods.voteForCampaign(parseInt(campaignId))
+                .send({
+                    from: account,
+                    gas: 200000
+                });
+            return true
+        } catch (err) {
+            alert("Error occured while approving. Try again!")
+            console.warn(err);
+            return false
+        }
+    }
+
+    // if (account === '')
+    //     navigate("/login");
 
     return (
         isLoad ?
             <>
-                <Requests />
+                <Requests requests={requests} voteForCampaign={voteForCampaign} web3={web3} />
                 <Footer />
             </>
             :

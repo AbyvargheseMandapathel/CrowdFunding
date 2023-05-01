@@ -1,3 +1,8 @@
+.requestList-container {
+    min-height: 100vh;
+    padding: 2em 1em;
+}
+
 .requests-container {
     width: 100%;
     min-height: 100vh;
@@ -7,13 +12,14 @@
     overflow-y: hidden;
 }
 
-.requests-container::-webkit-scrollbar {
-    height: 10px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
+    overflow-y: scroll;
+}
+
+table::-webkit-scrollbar {
+    height: 10px;
 }
 
 td,
@@ -30,7 +36,6 @@ tr th {
 
 .request-lists {
     cursor: pointer;
-    height: 3em;
 }
 
 .request-lists:nth-child(odd) {
@@ -49,6 +54,7 @@ tr th {
     display: flex;
     justify-content: center;
     align-items: center;
+    max-height: 3em !important;
 }
 
 .vote-btn {
@@ -91,9 +97,11 @@ tr th {
     flex-direction: column;
  }
 
+
  thead tr th {
     display: block;
     white-space: nowrap;
+    height: 3em;
  }
 
  tbody {
