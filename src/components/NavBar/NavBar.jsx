@@ -26,24 +26,23 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 
 const NavBar = ({ isLoginPage }) => {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
     const [drawerVisibility, setDrawerVisibility] = useState(false);
     const { account, setAccount } = useContext(AccountContext);
     const navigate = useNavigate();
     const location = useLocation();
   
     useEffect(() => {
-      checkLogin();
-    }, [location]);
-  
-    const checkLogin = () => {
-      if (!account && location.pathname !== '/login') {
+      const storedAccount = JSON.parse(localStorage.getItem('account'));
+      if (!account && location.pathname !== '/login' && storedAccount) {
+        setAccount(storedAccount);
+      } else if (!account && location.pathname !== '/login') {
         navigate('/login');
       }
-    };
+    }, [account, location.pathname, navigate, setAccount]);
   
     const changeTheme = () => {
-      let html = document.querySelector('html');
+      const html = document.querySelector('html');
       if (html.id === 'light') {
         html.id = 'dark';
         setTheme('dark');
@@ -53,40 +52,28 @@ const NavBar = ({ isLoginPage }) => {
         setTheme('light');
         localStorage.setItem('theme', 'light');
       }
-    }
+    };
   
     const slideDrawer = (pos) => {
-      let drawer = document.querySelector('.sidebar-drawer');
-      drawerVisibility ? drawer.style.opacity = '0' : drawer.style.opacity = '1'
-      drawer.style.left = pos
-      setDrawerVisibility(!drawerVisibility)
-    }
+      const drawer = document.querySelector('.sidebar-drawer');
+      drawerVisibility ? (drawer.style.opacity = '0') : (drawer.style.opacity = '1');
+      drawer.style.left = pos;
+      setDrawerVisibility(!drawerVisibility);
+    };
   
     const connect = async () => {
-      document.querySelector('.btn-nav-load').style.display = 'block';
-      document.querySelector('.btn-nav').style.background = 'var(--disabled)';
-      let acc = await connectAccount();
-      setTimeout(() => {
-        setAccount(acc);
-        sessionStorage.setItem('account', JSON.stringify(acc)); // store account data in sessionStorage
-        navigate('/'); // Redirect to index page after successful login
-      }, 1500);
+      const acc = await connectAccount();
+      setAccount(acc);
+      localStorage.setItem('account', JSON.stringify(acc));
+      navigate('/');
     };
   
     const handleLogout = () => {
-        setAccount(null);
-        sessionStorage.removeItem('account'); // remove account data from sessionStorage
-        localStorage.removeItem('account'); // remove account data from localStorage
-        navigate('/login'); // navigate to the login page
-      }
+      setAccount(null);
+      localStorage.removeItem('account');
+      navigate('/login');
+    };
   
-    // load user account data from sessionStorage on component mount
-    useEffect(() => {
-      const storedAccount = sessionStorage.getItem('account');
-      if (storedAccount) {
-        setAccount(JSON.parse(storedAccount));
-      }
-    }, []);
 
     return (
         <nav className='nav-bar'>
